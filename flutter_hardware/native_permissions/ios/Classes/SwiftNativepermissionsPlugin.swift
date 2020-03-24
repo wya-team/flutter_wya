@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftNativepermissionsPlugin: NSObject, FlutterPlugin {
+public class SwiftNativePermissionsPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "nativepermissions", binaryMessenger: registrar.messenger())
-    let instance = SwiftNativepermissionsPlugin()
+    let channel = FlutterMethodChannel(name: "native_permissions", binaryMessenger: registrar.messenger())
+    let instance = SwiftNativePermissionsPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

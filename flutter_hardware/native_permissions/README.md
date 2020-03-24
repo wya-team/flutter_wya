@@ -1,4 +1,4 @@
-# nativepermissions
+# native_permissions
 
 A new Flutter plugin.
 

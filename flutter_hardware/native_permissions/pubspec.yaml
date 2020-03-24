@@ -1,4 +1,4 @@
-name: nativepermissions
+name: native_permissions
 description: A new Flutter plugin.
 version: 0.0.1
 author:
@@ -28,10 +28,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.nativepermissions
-        pluginClass: NativepermissionsPlugin
+        package: com.weiyian.www.native_permissions
+        pluginClass: NativePermissionsPlugin
       ios:
-        pluginClass: NativepermissionsPlugin
+        pluginClass: NativePermissionsPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

@@ -1,6 +1,6 @@
-# nativepermissions_example
+# native_permissions_example
 
-Demonstrates how to use the nativepermissions plugin.
+Demonstrates how to use the native_permissions plugin.
 
 ## Getting Started
 

@@ -1,5 +1,5 @@
-name: nativepermissions_example
-description: Demonstrates how to use the nativepermissions plugin.
+name: native_permissions_example
+description: Demonstrates how to use the native_permissions plugin.
 publish_to: 'none'
 
 environment:
@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  nativepermissions:
+  native_permissions:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.

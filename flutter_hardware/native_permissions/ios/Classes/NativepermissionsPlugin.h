@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface NativepermissionsPlugin : NSObject<FlutterPlugin>
+@interface NativePermissionsPlugin : NSObject<FlutterPlugin>
 @end
