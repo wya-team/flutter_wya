@@ -9,6 +9,20 @@ public class SwiftCachePlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+
+    if call.method == "getSystemCache" {
+        WYAClearCache.wya_cacheFileSize(atPath: (call.arguments as! [String]).first!) { (msg) in
+            result(msg)
+        }
+    } else if call.method == "clearCache" {
+        WYAClearCache.wya_clearFile(atPath: (call.arguments as! [String]).first!) { (msg) in
+            result(msg)
+        }
+    } else if call.method == "availableSpace" {
+        result(WYAClearCache.wya_getDivceSize())
+    } else if call.method == "deviceCacheSpace" {
+        result(WYAClearCache.wya_getDivceTotalSize())
+    }
+
   }
 }
