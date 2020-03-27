@@ -41,14 +41,4 @@ class Cache {
     );
     return deviceCacheSpace;
   }
-
-  /// --------------------------------------------  android  -------------------------------------------
-  /// 获取SD卡某个路径下的内存大小
-  static Future<String> sDFreeSize(String path) async {
-    final String systemCache = await _channel.invokeMethod(
-      'getSDFreeSize',
-      [path],
-    );
-    return systemCache;
-  }
 }
