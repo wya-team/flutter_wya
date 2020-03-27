@@ -19,7 +19,9 @@ public class SwiftCachePlugin: NSObject, FlutterPlugin {
             result(msg)
         }
     } else if call.method == "availableSpace" {
-        result(WYAClearCache.wya_getDivceSize())
+        WYAClearCache.wya_getDivceAvailableSizeBlock { (msg) in
+            result(msg)
+        }
     } else if call.method == "deviceCacheSpace" {
         result(WYAClearCache.wya_getDivceTotalSize())
     }

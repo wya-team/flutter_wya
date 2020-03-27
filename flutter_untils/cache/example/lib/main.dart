@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Cache.systemCache("");
+      platformVersion = await Cache.systemCache();
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
                   RaisedButton(
                     child: Text("getSDFreeSize"),
                     onPressed: () async {
-                      var aa = await Cache.sDFreeSize("");
+                      var aa = await Cache.availableSpace;
                       setState(() {
                         _sDFreeSize = aa;
                       });

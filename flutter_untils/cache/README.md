@@ -1,32 +1,19 @@
-# cache
-
-A new Flutter plugin.
-
-## Getting Started
-
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-
 ## API
 
 - *Cache*
 
 ##### iOS/Android
 
-> 获取系统某个路径下的内存大小
+> iOS:获取系统某个路径下的内存大小，iOS下必传path
+> android:获取应用所有缓存大小并格式化,返回String,带单位，path不传
 ```
-systemCache(String path) -> Future<String>
+systemCache({String path}) -> Future<String>
 ```
 
-> 清除某个路径下的缓存
+> iOS: 清除某个路径下的缓存，iOS下必传
+> android: 清楚应用所有缓存，path不传
 ```
-clearCache(String path) -> Future<bool>
+clearCache({String path}) -> Future<bool>
 ```
 
 > 获取剩余可用空间

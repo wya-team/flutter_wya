@@ -63,14 +63,25 @@ public class CachePlugin implements FlutterPlugin, MethodCallHandler, ActivityAw
             }
         } else if (call.method.equals("clearCache")) {
             DataCleanUtil.cleanTotalCache(activity);
-            result.success("0B");
-        } else if (call.method.equals("getSDFreeSize")) {
+            result.success(true);
+        } else if (call.method.equals("availableSpace")) {
             RxPermissions rxPermissions = new RxPermissions(activity);
             rxPermissions
                     .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     .subscribe(granted -> {
                         if (granted) {
                             result.success(PhoneUtil.getInstance().getSDFreeSize()+"MB");
+                        } else {
+                            result.success("无访问权限");
+                        }
+                    });
+        }  else if (call.method.equals("deviceCacheSpace")) {
+            RxPermissions rxPermissions = new RxPermissions(activity);
+            rxPermissions
+                    .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    .subscribe(granted -> {
+                        if (granted) {
+                            result.success(PhoneUtil.getInstance().getSDAllSize()+"MB");
                         } else {
                             result.success("无访问权限");
                         }
