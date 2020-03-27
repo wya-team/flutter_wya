@@ -1,14 +1,23 @@
-# tableview
+## TableView
+> 与iOS端的table一致，可以很快的构建分区，分行的列表视图
 
-A new Flutter package.
+```java
+TableView({
+    Key key,
+    this.tableHeaderView,
+    this.tableFooterView,
+    @required this.sectionNumber,
+    @required this.numberRowOfSection,
+    this.sectionHeaderView,
+    this.sectionFooterView,
+    @required this.rowView,
+})
+```
 
-## Getting Started
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+- tableHeaderView -> Widget :  列表头部视图
+- tableFooterView -> Widget :  列表尾部视图
+- sectionNumber -> int : 分区个数
+- numberRowOfSection -> int Function(BuildContext context, int index) : 每个区有多少行
+- sectionHeaderView -> Widget Function(BuildContext context, int index) : 分区的区头视图
+- sectionFooterView -> Widget Function(BuildContext context, int index) : 分区的区尾视图
+- rowView -> Widget Function(BuildContext context, int section, int row) : 每一行的视图
