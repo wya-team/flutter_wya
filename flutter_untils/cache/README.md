@@ -4,14 +4,14 @@
 
 ##### iOS/Android
 
-> 获取系统某个路径下的内存大小
+> 获取系统某个路径下的内存大小，iOS下必传
 ```
-systemCache(String path) -> Future<String>
+systemCache({String path}) -> Future<String>
 ```
 
-> 清除某个路径下的缓存
+> 清除某个路径下的缓存，iOS下必传
 ```
-clearCache(String path) -> Future<bool>
+clearCache({String path}) -> Future<bool>
 ```
 
 > 获取剩余可用空间

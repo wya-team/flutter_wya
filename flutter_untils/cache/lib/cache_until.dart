@@ -9,7 +9,7 @@ class Cache {
   static const MethodChannel _channel = const MethodChannel('cache');
 
   /// 获取系统某个路径下的内存大小
-  static Future<String> systemCache(String path) async {
+  static Future<String> systemCache({String path}) async {
     final String systemCache = await _channel.invokeMethod(
       'getSystemCache',
       [path],
@@ -18,8 +18,11 @@ class Cache {
   }
 
   /// 清除某个路径下的缓存
-  static Future<bool> clearCache(String path) async {
-    final bool cacheCache = await _channel.invokeMethod('clearCache', [path]);
+  static Future<bool> clearCache({String path}) async {
+    final bool cacheCache = await _channel.invokeMethod(
+        'clearCache',
+        [path]
+    );
     return cacheCache;
   }
 
