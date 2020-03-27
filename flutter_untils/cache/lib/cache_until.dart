@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
+typedef PermissionStatusCallback = void Function();
+
 class Cache {
-  static const MethodChannel _channel =
-  const MethodChannel('cache');
+
+  static const MethodChannel _channel = const MethodChannel('cache');
+
   /// 获取系统某个路径下的内存大小
   static Future<String> systemCache(String path) async {
     final String systemCache = await _channel.invokeMethod(
@@ -16,10 +19,7 @@ class Cache {
 
   /// 清除某个路径下的缓存
   static Future<bool> clearCache(String path) async {
-    final bool cacheCache = await _channel.invokeMethod(
-        'clearCache',
-        [path]
-    );
+    final bool cacheCache = await _channel.invokeMethod('clearCache', [path]);
     return cacheCache;
   }
 
@@ -37,5 +37,15 @@ class Cache {
       'deviceCacheSpace',
     );
     return deviceCacheSpace;
+  }
+
+  /// --------------------------------------------  android  -------------------------------------------
+  /// 获取SD卡某个路径下的内存大小
+  static Future<String> sDFreeSize(String path) async {
+    final String systemCache = await _channel.invokeMethod(
+      'getSDFreeSize',
+      [path],
+    );
+    return systemCache;
   }
 }

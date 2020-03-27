@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:cache/cache_until.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,6 +15,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String _sDFreeSize;
 
   @override
   void initState() {
@@ -27,7 +28,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Cache.deviceCacheSpace;
+      platformVersion = await Cache.systemCache("");
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -50,7 +51,25 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: <Widget>[
+              Text('Running on: $_platformVersion\n'),
+              Row(
+                children: <Widget>[
+                  RaisedButton(
+                    child: Text("getSDFreeSize"),
+                    onPressed: () async {
+                      var aa = await Cache.sDFreeSize("");
+                      setState(() {
+                        _sDFreeSize = aa;
+                      });
+                    },
+                  ),
+                  Text('sd卡剩余空间的大小: $_sDFreeSize'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
