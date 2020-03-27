@@ -20,4 +20,8 @@ void main() {
   test('getPlatformVersion', () async {
 //    expect(await Cache.platformVersion, '42');
   });
+
+  test('loadCache', () async {
+    expect(await Cache.loadCache(), '42');
+  });
 }

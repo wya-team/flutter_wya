@@ -16,6 +16,7 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -30,4 +31,15 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
+dependencies {
+    implementation 'com.github.tbruyelle:rxpermissions:0.9.3'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.3"
+}
+
