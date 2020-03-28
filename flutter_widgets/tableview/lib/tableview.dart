@@ -85,13 +85,19 @@ class TableView extends StatefulWidget {
     this.sectionFooterView,
     @required this.rowView,
   }) : super(key: key);
-
+  /// 表头视图
   final Widget tableHeaderView;
+  /// 表尾视图
   final Widget tableFooterView;
+  /// 分区个数
   final int sectionNumber;
+  /// 区头视图
   SectionHeaderView sectionHeaderView;
+  /// 区尾视图
   SectionFooterView sectionFooterView;
+  /// 每个区的行数
   NumberRowOfSection numberRowOfSection;
+  /// 每行的视图
   RowView rowView;
   @override
   _TableViewState createState() => _TableViewState();

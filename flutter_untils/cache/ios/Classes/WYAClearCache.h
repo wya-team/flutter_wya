@@ -62,20 +62,20 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)wya_clearFileAtPath:(NSString *)filePath
            ClearStatusBlock:(void (^)(BOOL status))clearStatus;
 
-/**
- 获取可用空间/系统总空间
- 例如：可用空间3.97G / 总空间59.59G
-
- @return string
- */
-+ (NSString *)wya_getDivceSize;
-
 ///**
-// 获取可用空间
+// 获取可用空间/系统总空间
+// 例如：可用空间3.97G / 总空间59.59G
 //
-// @param folderSize 返回可用的size
+// @return string
 // */
-//+ (void)wya_getDivceAvailableSizeBlock:(void (^)(NSString * folderSize))folderSize;
+//+ (NSString *)wya_getDivceSize;
+
+/**
+ 获取可用空间
+
+ @param folderSize 返回可用的size
+ */
++ (void)wya_getDivceAvailableSizeBlock:(void (^)(NSString * folderSize))folderSize;
 
 /**
  获取Divce总存储空间
