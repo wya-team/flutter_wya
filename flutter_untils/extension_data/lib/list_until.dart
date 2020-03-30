@@ -2,7 +2,7 @@ import 'dart:convert';
 
 extension ListExtension on List{
 
-  /// 讲一个List转换为一个JSON类型的String
+  /// 将一个List转换为一个JSON类型的String
   /// callback => String
   String listTransToJSONString() {
     /// 需要实现数组转json字符串

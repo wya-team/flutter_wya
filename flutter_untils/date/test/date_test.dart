@@ -16,8 +16,4 @@ void main() {
   tearDown(() {
     channel.setMockMethodCallHandler(null);
   });
-
-  test('getPlatformVersion', () async {
-    expect(await Date.platformVersion, '42');
-  });
 }
