@@ -1,18 +1,24 @@
 library noticebar;
+import 'dart:ui';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class NoticeBar extends StatefulWidget {
   NoticeBar({
-    this.leftImageName,
-    this.rightImageName,
-    this.text,
+    this.scrollDirection = Axis.horizontal,
+    this.reverse = false,
+    this.leftWidget,
+    this.rightWidget,
+    @required this.textList,
     this.backgroundColor = Colors.white,
   }) : super();
-  String leftImageName;
-  String rightImageName;
-  String text;
+  Axis scrollDirection;
+  bool reverse;
+  Widget leftWidget;
+  Widget rightWidget;
+  List<String> textList;
   Color backgroundColor;
   @override
   _NoticeBarState createState() => _NoticeBarState();
@@ -20,20 +26,13 @@ class NoticeBar extends StatefulWidget {
 
 class _NoticeBarState extends State<NoticeBar>
     with SingleTickerProviderStateMixin {
-  GlobalKey textKey = GlobalKey();
-  GlobalKey selfKey = GlobalKey();
-  double item_width = 0.0;
-  double self_width = 0.0;
-  final padding = 5.0;
-  final image_width = 30.0;
-//  var textPadding = 0.0;
-  List<Widget> views = [];
+  ScrollController _scrollController;
+  Timer _timer;
+  double _offset = 0.0;
 
-  AnimationController controller;
-  Animation curve;
-  Animation<Offset> animation;
-  double animationValue;
-  bool animationComplate;
+  final _image_width = 30.0;
+
+  List<Widget> _views = [];
 
   @override
   void initState() {
@@ -41,139 +40,146 @@ class _NoticeBarState extends State<NoticeBar>
     super.initState();
     addAnimation();
     reloadSubviews();
-    getMaxWidth();
+
   }
 
   @override
   void didUpdateWidget(NoticeBar oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    addAnimation();
-    reloadSubviews();
-    getMaxWidth();
-  }
-
-  void getMaxWidth() {
-    WidgetsBinding binding = WidgetsBinding.instance;
-    binding.addPostFrameCallback((timeStamp) {
-      RenderObject renderObject = textKey.currentContext.findRenderObject();
-      RenderObject selfObject = selfKey.currentContext.findRenderObject();
-      setState(() {
-        item_width = renderObject.semanticBounds.size.width;
-        self_width = selfObject.semanticBounds.size.width;
-      });
-    });
   }
 
   void reloadSubviews() {
     List<Widget> widgets = [];
-    widgets.add(
-      item_width >
-          (self_width -
-              (widget.leftImageName != null ? image_width : 0) -
-              (widget.rightImageName != null ? image_width : 0))
-          ? SlideTransition(
-        transformHitTests: true,
-        textDirection: TextDirection.rtl,
-        position: this.animation,
-        child: Padding(
-          padding: EdgeInsets.only(left: animationComplate == true ?  100 : image_width),
-          child: Text(
-            widget.text,
-            key: textKey,
-            style: TextStyle(color: Colors.black),
-            maxLines: 1,
-          ),
-        ),
-      )
-          : Positioned(
-        left: widget.leftImageName != null ? image_width : padding * 2,
-        child: Text(
-          widget.text,
-          key: textKey,
-          style: TextStyle(color: Colors.black),
-          maxLines: 1,
-        ),
-      ),
-    );
-    if (widget.leftImageName != null) {
+    if(widget.textList.length > 1) {
+      widgets.add(ListView.builder(
+        reverse: widget.reverse,
+          scrollDirection: widget.scrollDirection,
+          controller: _scrollController,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: widget.textList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 44,
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: _image_width),
+                child: Text(
+                  widget.textList[index],
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    backgroundColor: widget.backgroundColor,
+                  ),
+                  maxLines: 1,
+                ),
+              ),
+            );
+          }));
+    }
+
+    if (widget.leftWidget != null) {
       widgets.add(Positioned(
         left: 0,
         top: 0,
         bottom: 0,
-        width: image_width,
+        width: _image_width,
         child: Container(
-          color: Colors.white,
-          child: Image(image: AssetImage(widget.leftImageName)),
+          color: widget.backgroundColor,
+          child: widget.leftWidget,
         ),
       ));
     }
-    if (widget.rightImageName != null) {
+    if (widget.rightWidget != null) {
       widgets.add(Positioned(
         right: 0,
         top: 0,
         bottom: 0,
-        width: image_width,
+        width: _image_width,
         child: Container(
-          color: Colors.white,
-          child: Image(
-            image: AssetImage(widget.rightImageName),
-          ),
+          color: widget.backgroundColor,
+          child: widget.rightWidget,
         ),
       ));
     }
 
     setState(() {
-      views = widgets;
+      _views = widgets;
     });
   }
 
   void addAnimation() {
-    controller = AnimationController(
-      duration: Duration(milliseconds: 10000),
-      vsync: this,
-    );
-    curve = CurvedAnimation(parent: controller, curve: Curves.linear);
-    animation = Tween(
-      begin: Offset(0.0, 0.0),
-      end: Offset(1.0, 0.0),
-    ).animate(curve)
-      ..addListener(() {
-        setState(() {
-          animationValue = animation.value.dx;
-          print(animationValue);
-        });
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          controller.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          controller.forward();
+
+      _scrollController = ScrollController(
+        initialScrollOffset: _offset,
+      );
+      _scrollController.addListener(() {
+//        print('_scrollController.position.maxScrollExtent==${_scrollController.position.maxScrollExtent}');
+//        print('_scrollController.offset==${_scrollController.offset}');
+        if (widget.scrollDirection == Axis.horizontal){
+          double offsetScroll = 0.0;
+          if (widget.leftWidget != null && widget.rightWidget != null){
+            offsetScroll = _scrollController.position.maxScrollExtent + _image_width * 2;
+          } else if (widget.leftWidget != null || widget.rightWidget != null){
+            offsetScroll = _scrollController.position.maxScrollExtent + _image_width;
+          } else {
+            offsetScroll = _scrollController.position.maxScrollExtent;
+          }
+          if (offsetScroll <= _scrollController.offset) {
+            _scrollController.jumpTo(0.0);
+          }
+        } else {
+          if (_scrollController.position.maxScrollExtent == _scrollController.offset) {
+            _scrollController.jumpTo(0.0);
+          }
         }
+
       });
-    controller.forward();
+      if(widget.scrollDirection == Axis.horizontal) {
+        _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+          double newOffset = _scrollController.offset + 10;
+          if (newOffset != _offset) {
+            _offset = newOffset;
+            _scrollController.animateTo(_offset,
+                duration: Duration(milliseconds: 100), curve: Curves.linear);
+          }
+        });
+      } else {
+        _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+          double newOffset = _scrollController.offset + 44;
+          if (newOffset != _offset) {
+            _offset = newOffset;
+            _scrollController.animateTo(_offset,
+                duration: Duration(milliseconds: 500), curve: Curves.linear);
+          }
+        });
+      }
+
+
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    controller.dispose();
+    if (_timer != null) {
+      _timer.cancel();
+    }
+    if (_scrollController != null) {
+      _scrollController.dispose();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-//    print('self_width==$self_width');
-//    print('item_width==$item_width');
     return Container(
-      key: selfKey,
       height: 44,
       color: widget.backgroundColor,
       child: Stack(
+        overflow: Overflow.visible,
         alignment: Alignment.centerLeft,
-        children: views,
+        children: _views,
       ),
     );
   }
 }
-
