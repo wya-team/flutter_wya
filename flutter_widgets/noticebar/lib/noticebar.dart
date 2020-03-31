@@ -118,7 +118,7 @@ class _NoticeBarState extends State<NoticeBar>
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
-                    backgroundColor: Colors.red,
+                    backgroundColor: widget.backgroundColor,
                   ),
                   maxLines: 1,
                 ),
