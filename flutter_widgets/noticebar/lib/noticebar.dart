@@ -4,26 +4,21 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-enum NoticeType {
-  /// 连续性
-  constant,
-  /// 阶段性
-  subsection,
-}
-
 // ignore: must_be_immutable
 class NoticeBar extends StatefulWidget {
   NoticeBar({
+    this.scrollDirection = Axis.horizontal,
+    this.reverse = false,
     this.leftWidget,
     this.rightWidget,
-    @required this.text,
-    this.type = NoticeType.constant,
+    @required this.textList,
     this.backgroundColor = Colors.white,
   }) : super();
+  Axis scrollDirection;
+  bool reverse;
   Widget leftWidget;
   Widget rightWidget;
-  String text;
-  NoticeType type;
+  List<String> textList;
   Color backgroundColor;
   @override
   _NoticeBarState createState() => _NoticeBarState();
@@ -34,23 +29,10 @@ class _NoticeBarState extends State<NoticeBar>
   ScrollController _scrollController;
   Timer _timer;
   double _offset = 0.0;
-  int _itemCount = 100;
 
-  GlobalKey _textKey = GlobalKey();
-  GlobalKey _selfKey = GlobalKey();
-  double _item_width = 0.0;
-  double _self_width = 0.0;
-
-  /// 设置内容边距
-  final _padding = 5.0;
   final _image_width = 30.0;
 
   List<Widget> _views = [];
-  bool _flag = false;
-
-  AnimationController _controller;
-  Animation _curve;
-  Animation<Offset> _animation;
 
   @override
   void initState() {
@@ -59,54 +41,23 @@ class _NoticeBarState extends State<NoticeBar>
     addAnimation();
     reloadSubviews();
 
-    getMaxWidth();
   }
 
   @override
   void didUpdateWidget(NoticeBar oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    getMaxWidth();
-  }
-
-  void getMaxWidth() {
-    WidgetsBinding binding = WidgetsBinding.instance;
-    binding.addPostFrameCallback((timeStamp) {
-      RenderObject selfObject = _selfKey.currentContext.findRenderObject();
-      RenderObject renderObject = _textKey.currentContext.findRenderObject();
-      _self_width = selfObject.semanticBounds.size.width;
-      _item_width = renderObject.semanticBounds.size.width;
-
-      _flag = _item_width >
-          (_self_width -
-              (widget.leftWidget != null ? _image_width : 0) -
-              (widget.rightWidget != null ? _image_width : 0));
-      reloadSubviews();
-    });
   }
 
   void reloadSubviews() {
     List<Widget> widgets = [];
-    widgets.add(
-      _flag
-          ? widget.type == NoticeType.subsection
-              ? SlideTransition(
-                  position: _animation,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: _image_width),
-                    child: Text(
-                      widget.text,
-                      key: _textKey,
-                      style: TextStyle(color: Colors.black),
-                      maxLines: 1,
-                    ),
-                  ),
-                )
-              : ListView.builder(
-          scrollDirection: Axis.horizontal,
+    if(widget.textList.length > 1) {
+      widgets.add(ListView.builder(
+        reverse: widget.reverse,
+          scrollDirection: widget.scrollDirection,
           controller: _scrollController,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: _itemCount,
+          itemCount: widget.textList.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               height: 44,
@@ -114,7 +65,7 @@ class _NoticeBarState extends State<NoticeBar>
               child: Padding(
                 padding: EdgeInsets.only(left: _image_width),
                 child: Text(
-                  widget.text,
+                  widget.textList[index],
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -124,17 +75,9 @@ class _NoticeBarState extends State<NoticeBar>
                 ),
               ),
             );
-          })
-          : Positioned(
-              left: widget.leftWidget != null ? _image_width : _padding * 2,
-              child: Text(
-                widget.text,
-                key: _textKey,
-                style: TextStyle(color: Colors.black),
-                maxLines: 1,
-              ),
-            ),
-    );
+          }));
+    }
+
     if (widget.leftWidget != null) {
       widgets.add(Positioned(
         left: 0,
@@ -166,50 +109,58 @@ class _NoticeBarState extends State<NoticeBar>
   }
 
   void addAnimation() {
-    if (widget.type == NoticeType.subsection) {
-      _controller = AnimationController(
-        duration: Duration(milliseconds: 10000),
-        vsync: this,
-      );
-      _curve = CurvedAnimation(parent: _controller, curve: Curves.linear);
-      _animation = Tween(
-        begin: Offset(0.0, 0.0),
-        end: Offset(-1.0, 0.0),
-      ).animate(_curve)
-        ..addListener(() {
-          setState(() {});
-        })
-        ..addStatusListener((status) {
-          if (status == AnimationStatus.completed) {
-          } else if (status == AnimationStatus.dismissed) {}
-        });
-      _controller.repeat();
-    } else {
+
       _scrollController = ScrollController(
         initialScrollOffset: _offset,
       );
       _scrollController.addListener(() {
-        if (_scrollController.position.maxScrollExtent == _scrollController.offset) {
-//          _scrollController.jumpTo(10.0);
+//        print('_scrollController.position.maxScrollExtent==${_scrollController.position.maxScrollExtent}');
+//        print('_scrollController.offset==${_scrollController.offset}');
+        if (widget.scrollDirection == Axis.horizontal){
+          double offsetScroll = 0.0;
+          if (widget.leftWidget != null && widget.rightWidget != null){
+            offsetScroll = _scrollController.position.maxScrollExtent + _image_width * 2;
+          } else if (widget.leftWidget != null || widget.rightWidget != null){
+            offsetScroll = _scrollController.position.maxScrollExtent + _image_width;
+          } else {
+            offsetScroll = _scrollController.position.maxScrollExtent;
+          }
+          if (offsetScroll <= _scrollController.offset) {
+            _scrollController.jumpTo(0.0);
+          }
+        } else {
+          if (_scrollController.position.maxScrollExtent == _scrollController.offset) {
+            _scrollController.jumpTo(0.0);
+          }
         }
+
       });
-      _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
-        double newOffset = _scrollController.offset + 10;
-        if (newOffset != _offset) {
-          _offset = newOffset;
-          _scrollController.animateTo(_offset,
-              duration: Duration(milliseconds: 100), curve: Curves.linear);
-        }
-      });
-    }
+      if(widget.scrollDirection == Axis.horizontal) {
+        _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+          double newOffset = _scrollController.offset + 10;
+          if (newOffset != _offset) {
+            _offset = newOffset;
+            _scrollController.animateTo(_offset,
+                duration: Duration(milliseconds: 100), curve: Curves.linear);
+          }
+        });
+      } else {
+        _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+          double newOffset = _scrollController.offset + 44;
+          if (newOffset != _offset) {
+            _offset = newOffset;
+            _scrollController.animateTo(_offset,
+                duration: Duration(milliseconds: 500), curve: Curves.linear);
+          }
+        });
+      }
+
+
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    if (_controller != null) {
-      _controller.dispose();
-    }
     if (_timer != null) {
       _timer.cancel();
     }
@@ -222,7 +173,6 @@ class _NoticeBarState extends State<NoticeBar>
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: _selfKey,
       height: 44,
       color: widget.backgroundColor,
       child: Stack(

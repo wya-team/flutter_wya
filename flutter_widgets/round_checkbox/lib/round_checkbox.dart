@@ -3,8 +3,7 @@ library round_checkbox;
 import 'package:flutter/material.dart';
 
 class RoundCheckBox extends StatefulWidget {
-  var value = false;
-
+  bool value = false;
   Function(bool) onChanged;
 
   RoundCheckBox({Key key, @required this.value, this.onChanged})
