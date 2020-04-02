@@ -12,6 +12,9 @@ class SearchBar extends StatefulWidget {
   /// 是否显示左侧按钮
   final bool hideLeft;
 
+  /// 中间样式的搜索框是否需要点击跳转
+  final bool isNeedPushCenter;
+
   /// 搜索类型，默认为普通类型
   final SearchBarType searchBarType;
 
@@ -39,7 +42,7 @@ class SearchBar extends StatefulWidget {
   /// 搜索按钮图标颜色
   final Color searchIconColor;
 
-  /// 高度默认28
+  /// 高度默认32
   final double height;
 
   /// 圆角值
@@ -62,7 +65,7 @@ class SearchBar extends StatefulWidget {
       this.height = 32,
       this.searchIconColor = Colors.grey,
       this.countPadding,
-      this.borderRadius = 5});
+      this.borderRadius = 5, this.isNeedPushCenter = false});
 
   @override
   _SearchBarState createState() => _SearchBarState();
@@ -180,12 +183,12 @@ class _SearchBarState extends State<SearchBar> {
                       widget.hint ?? '搜索',
                       style: TextStyle(fontSize: 13, color: Colors.grey),
                     ),
-                  ), () {
+                  ), widget.isNeedPushCenter ? () {
                 // 切换为normal输入框
                 setState(() {
                   switchInputBox = !switchInputBox;
                 });
-              })
+              } : widget.inputBoxClick)
             ],
           );
   }
