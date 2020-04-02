@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9683a2f6-4e49-426c-bbc1-cde4ba0e1939" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/example_lib_main_dart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/test/widget_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftNativeRecordPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftNativeRecordPlugin.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/native_record.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/native_record.podspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/native_record.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/native_record.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/round_checkbox/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/round_checkbox/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/round_checkbox/lib/round_checkbox.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/round_checkbox/lib/round_checkbox.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/round_checkbox/test/round_checkbox_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/round_checkbox/test/round_checkbox_test.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../flutter_widgets/step/lib/time_axis.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/step/lib/time_axis.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/tableview/test/tableview_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/tableview/test/tableview_test.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -53,7 +39,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="161">
-                <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+                <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -134,11 +120,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="-1849" />
-    <option name="y" value="-72" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1628" />
+    <option name="y" value="-103" />
+    <option name="width" value="1449" />
+    <option name="height" value="864" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -264,10 +250,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1920" y="-217" width="1920" height="1080" extended-state="0" />
+    <frame x="-1628" y="-103" width="1449" height="864" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24920128" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3326226" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -277,7 +263,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32970297" />
-      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.3910891" />
+      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.511658" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="4" weight="0.32970297" />
@@ -289,7 +275,7 @@
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="right" id="Flutter Inspector" order="3" visible="true" weight="0.05378062" />
+      <window_info anchor="right" id="Flutter Inspector" order="3" visible="true" weight="0.07178394" />
       <window_info anchor="right" id="Word Book" order="4" side_tool="true" />
       <window_info anchor="right" id="Flutter Outline" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
@@ -359,7 +345,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="161">
-            <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+            <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
