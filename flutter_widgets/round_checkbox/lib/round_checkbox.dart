@@ -6,8 +6,11 @@ class RoundCheckBox extends StatefulWidget {
   bool value = false;
   Function(bool) onChanged;
 
-  RoundCheckBox({Key key, @required this.value, this.onChanged})
-      : super(key: key);
+  RoundCheckBox({
+    Key key,
+    @required this.value,
+    this.onChanged
+  }) : super(key: key);
 
   @override
   _RoundCheckBoxState createState() => _RoundCheckBoxState();
@@ -26,15 +29,17 @@ class _RoundCheckBoxState extends State<RoundCheckBox> {
             padding: const EdgeInsets.all(0.0),
             child: widget.value
                 ? Icon(
-              Icons.check_circle,
-              size: 20.0,
-              color: Colors.lightBlue,
-            )
+                    Icons.check_circle,
+                    size: 20.0,
+                    color: Colors.lightBlue,
+              textDirection: TextDirection.ltr,
+                  )
                 : Icon(
-              Icons.panorama_fish_eye,
-              size: 20.0,
-              color: Colors.grey,
-            ),
+                    Icons.panorama_fish_eye,
+                    size: 20.0,
+                    color: Colors.grey,
+              textDirection: TextDirection.ltr,
+                  ),
           )),
     );
   }

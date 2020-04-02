@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - native_record (0.0.1):
+    - Flutter
+    - NTYAmrConverter
+  - NTYAmrConverter (0.1.0)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - native_record (from `.symlinks/plugins/native_record/ios`)
+
+SPEC REPOS:
+  trunk:
+    - NTYAmrConverter
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  native_record:
+    :path: ".symlinks/plugins/native_record/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  native_record: 6b7bab25a265612148ccf38500bbb457fa34a8a6
+  NTYAmrConverter: 0cd46d044576b1985f9879b4e5164aa25500b658
+
+PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a
+
+COCOAPODS: 1.8.4
