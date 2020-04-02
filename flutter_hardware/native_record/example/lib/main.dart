@@ -49,8 +49,16 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          children: <Widget>[
+            FlatButton(onPressed: (){}, child: Text('开始录音')),
+            FlatButton(onPressed: (){}, child: Text('暂停录音')),
+            FlatButton(onPressed: (){}, child: Text('结束录音')),
+            Text('录音的路径是：'),
+            FlatButton(onPressed: (){}, child: Text('开始播放')),
+            FlatButton(onPressed: (){}, child: Text('暂停播放')),
+            FlatButton(onPressed: (){}, child: Text('结束播放')),
+          ],
         ),
       ),
     );

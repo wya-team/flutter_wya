@@ -8,23 +8,29 @@ class TimeAxis extends StatelessWidget {
   double left;
   ParagraphStyle paragraphStyle;
   Color textColor;
-  TimeAxis(this.timeText, this.paragraphStyle, this.child,{
+
+  TimeAxis(
+    this.timeText,
+    this.paragraphStyle,
+    this.child, {
+    Key key,
     this.left = 100,
     this.textColor = Colors.black,
-  }) : super();
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-        painter: MyPainter(
-          str: this.timeText,
-          paragraphStyle: this.paragraphStyle,
-          textColor: this.textColor,
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(left: this.left),
-          child: this.child,
-        ));
+      painter: MyPainter(
+        str: this.timeText,
+        paragraphStyle: this.paragraphStyle,
+        textColor: this.textColor,
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(left: this.left),
+        child: this.child,
+      ),
+    );
   }
 }
 
@@ -48,7 +54,7 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.fill
       ..color = Colors.red
       ..strokeWidth = 2;
-    canvas.drawLine(Offset(50, 25), Offset(50, size.height-5), paint);
+    canvas.drawLine(Offset(50, 25), Offset(50, size.height - 5), paint);
 
     ParagraphBuilder pb = ParagraphBuilder(this.paragraphStyle)
       ..pushStyle(ui.TextStyle(color: this.textColor))
