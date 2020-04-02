@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SearchBar extends StatefulWidget {
+class SearchBarCenter extends StatefulWidget {
   /// 占位文字组件
   final Text title;
   final double height;
@@ -9,33 +9,32 @@ class SearchBar extends StatefulWidget {
   final double borderRadius;
   final EdgeInsetsGeometry margin;
   final EdgeInsetsGeometry padding;
-  final TextStyle style;
-  final ValueChanged<String> onChanged;
-  final ValueChanged<String> onSubmitted;
-  final VoidCallback onEditingComplete;
+
   /// 边框色
   final Color borderColor;
 
   /// 光标颜色
   final Color cursorColor;
-
-  SearchBar(
-      {@required this.title,
-      this.height = 44,
-      this.width,
-      this.borderColor = Colors.white,
-      this.cursorColor ,
-      this.borderWidth,
-      this.borderRadius,
-      this.margin,
-      this.padding, this.style, this.onChanged, this.onSubmitted, this.onEditingComplete});
+  final TextStyle style;
+  final ValueChanged<String> onChanged;
+  final ValueChanged<String> onSubmitted;
+  final VoidCallback onEditingComplete;
+  SearchBarCenter({@required this.title,
+    this.height = 44,
+    this.width,
+    this.borderColor = Colors.white,
+    this.cursorColor,
+    this.borderWidth,
+    this.borderRadius,
+    this.margin,
+    this.padding, this.onChanged, this.onSubmitted, this.style, this.onEditingComplete});
 
   @override
-  _SearchBarState createState() => _SearchBarState();
+  _SearchBarCenterState createState() => _SearchBarCenterState();
 }
 
-class _SearchBarState extends State<SearchBar> {
-  bool _isEdit = false;
+
+class _SearchBarCenterState extends State<SearchBarCenter> {
   bool isShowClean = false;
   FocusNode _focusNode = FocusNode();
   TextEditingController controller = TextEditingController();
@@ -59,12 +58,6 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     assert(widget.title != null);
     return Container(
@@ -76,15 +69,14 @@ class _SearchBarState extends State<SearchBar> {
             border: Border.all(
                 color: widget.borderColor, width: widget.borderWidth),
             borderRadius:
-                BorderRadius.all(Radius.circular(widget.borderRadius)),
+            BorderRadius.all(Radius.circular(widget.borderRadius)),
             color: Colors.white),
-        child: _isEdit ? _getEditWidget() : _getNormalWidget());
+        child: _getEditWidget());
   }
 
   Widget _getEditWidget() {
     return TextField(
       textInputAction:TextInputAction.search,
-      autofocus: true,
       style: widget.style,
       focusNode: _focusNode,
       controller: controller,
@@ -94,7 +86,9 @@ class _SearchBarState extends State<SearchBar> {
           hintText: widget.title.data,
           suffixIcon: isShowClean ? IconButton(
               icon: Icon(Icons.clear, color: Colors.grey),
-              onPressed: onCancel()) : Text(''),
+              onPressed: (){
+                onCancel();
+              }) : Text(''),
           border: InputBorder.none
       ),
 
@@ -112,26 +106,6 @@ class _SearchBarState extends State<SearchBar> {
     );
   }
 
-  Widget _getNormalWidget() {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _isEdit = !_isEdit;
-        });
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.search,
-            color: Colors.grey,
-          ),
-           widget.title,
-        ],
-      ),
-    );
-  }
-
   onCancel() {
     controller.text = '';
     WidgetsBinding.instance.addPostFrameCallback((_) => controller.clear());
@@ -141,4 +115,3 @@ class _SearchBarState extends State<SearchBar> {
   }
 
 }
-
