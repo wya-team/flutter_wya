@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9683a2f6-4e49-426c-bbc1-cde4ba0e1939" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/step/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/step/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/step/lib/step.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/step/lib/time_axis.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/step/lib/time_axis.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/step/test/step_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/step/test/step_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/image_preview/lib/image_preview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/image_preview/lib/image_preview.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/image_preview/test/image_preview_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/image_preview/test/image_preview_test.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -29,16 +26,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/native_record.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
+            <state relative-caret-position="611">
               <caret line="36" column="2" lean-forward="true" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
@@ -125,10 +122,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1558" />
-    <option name="y" value="-47" />
-    <option name="width" value="1449" />
-    <option name="height" value="864" />
+    <option name="x" value="-1769" />
+    <option name="y" value="-194" />
+    <option name="width" value="1612" />
+    <option name="height" value="1002" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -254,10 +251,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1558" y="-47" width="1449" height="864" extended-state="0" />
+    <frame x="-1769" y="-194" width="1612" height="1002" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3326226" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29808918" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -267,7 +264,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32970297" />
-      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.511658" />
+      <window_info anchor="bottom" id="Run" order="1" weight="0.43406594" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="4" weight="0.32970297" />
@@ -279,7 +276,7 @@
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="right" id="Flutter Inspector" order="3" visible="true" weight="0.07178394" />
+      <window_info anchor="right" id="Flutter Inspector" order="3" visible="true" weight="0.06433121" />
       <window_info anchor="right" id="Word Book" order="4" side_tool="true" />
       <window_info anchor="right" id="Flutter Outline" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
@@ -338,13 +335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/native_record.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="36" column="2" lean-forward="true" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
@@ -354,6 +344,13 @@
           <second_editor>
             <markdownNavigatorState />
           </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/native_record.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="36" column="2" lean-forward="true" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="28" />
         </state>
       </provider>
     </entry>
