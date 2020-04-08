@@ -11,6 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  extended_image:
+    git:
+      url: https://github.com/wya-team/flutter_wya.git
+      path: flutter_widgets/extended_image
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

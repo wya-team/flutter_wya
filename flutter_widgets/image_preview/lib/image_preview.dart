@@ -1,10 +1,15 @@
 library image_preview;
 
+import 'dart:ui';
+import 'package:extended_image/extended_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 typedef ImagePreviewProvider = ImageProvider<dynamic> Function(
     BuildContext context, int index);
 typedef ImagePreviewModelCallback = ImagePreviewModel Function(int index);
+typedef ImageDownloadCallback = Function(int index);
 
 enum PageControlStyle {
   none,
@@ -28,25 +33,33 @@ class ImagePreviewModel {
   bool isShowOriginalImage = true;
 
   ImagePreviewModel({this.originalImageUrl, this.imageSize});
-
 }
 
 class ImagePreview extends StatefulWidget {
   ImagePreview({
     @required this.provider,
     @required this.itemCount,
-    this.callback,
+    this.selectIndex = 0,
+    this.modelCallback,
+    this.downloadCallback,
     this.pageControlStyle = PageControlStyle.none,
     this.minZoomNumber = 1.0,
     this.maxZoomNumber = 3.0,
-  });
+  })  : assert(provider != null),
+        assert(itemCount != null || itemCount == 0);
 
   /// 返回需要加载的图片类型，类型由外部定义
   /// ImageProvider
   ImagePreviewProvider provider;
 
   /// 用来控制界面显示元素的
-  ImagePreviewModelCallback callback;
+  ImagePreviewModelCallback modelCallback;
+
+  /// 下载按钮回调
+  ImageDownloadCallback downloadCallback;
+
+  /// 默认选中的下标
+  int selectIndex;
 
   /// 要显示图片的个数
   int itemCount;
@@ -65,34 +78,36 @@ class ImagePreview extends StatefulWidget {
 }
 
 class _ImagePreviewState extends State<ImagePreview> {
-  ScrollController scrollController = ScrollController();
+  PageController _pageController;
   double screenWidth;
-  // 检测最后偏移量
-  Offset _lastOffset;
+
   // 检测当前所在位置
   int _lastIndex = 0;
-  // 初始缩放大小
-  double _scaleNumber = 1;
+
   // 记录外部传入数据模型，用来改变页面状态和操作
   ImagePreviewModel _model;
+
   /// 记录内部图片加载ImageProvider
-  List<ImageProvider<dynamic>> _imageProviders = [];
+  List<Widget> _imageProviders = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (widget.callback != null) {
-      _model = widget.callback(0);
+    _lastIndex = widget.selectIndex;
+    if (widget.modelCallback != null) {
+      _model = widget.modelCallback(0);
     }
-    scrollController.addListener(() {
-      if (scrollController.offset % screenWidth == 0.0) {
+    _pageController = PageController(
+      initialPage: widget.selectIndex,
+    );
+    _pageController.addListener(() {
+      if (_pageController.offset % screenWidth == 0.0) {
         setState(() {
-          if (widget.callback != null) {
-            _model =
-                widget.callback(
-                    (scrollController.offset / screenWidth).toInt());
+          if (widget.modelCallback != null) {
+            _model = widget.modelCallback(_pageController.page.toInt());
           }
+          _lastIndex = _pageController.page.toInt();
         });
       }
     });
@@ -110,19 +125,21 @@ class _ImagePreviewState extends State<ImagePreview> {
           Padding(
             padding: EdgeInsets.only(left: 20),
             child: _model?.originalImageUrl != null &&
-                _model?.isShowOriginalImage == true ? RaisedButton(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              color: Color.fromRGBO(38, 38, 38, 1),
-              onPressed: showOriginalImage,
-              child: Text(
-                '查看原图(${_model.imageSize})',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12.0,
-                ),
-              ),
-            ) : null,
+                    _model?.isShowOriginalImage == true
+                ? RaisedButton(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    color: Color.fromRGBO(38, 38, 38, 1),
+                    onPressed: showOriginalImage,
+                    child: Text(
+                      '查看原图(${_model.imageSize})',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  )
+                : null,
           ),
           Padding(
             padding: EdgeInsets.only(right: 20),
@@ -212,146 +229,82 @@ class _ImagePreviewState extends State<ImagePreview> {
   }
 
   void showOriginalImage() {
-    print('_imageProviders==$_imageProviders');
-    print((scrollController.offset / screenWidth).toInt());
-    _imageProviders.replaceRange((scrollController.offset / screenWidth).toInt(),
-        (scrollController.offset / screenWidth).toInt() + 1, [NetworkImage(
-            _model.originalImageUrl
-        )]);
+    _imageProviders.replaceRange((_pageController.offset / screenWidth).toInt(),
+        (_pageController.offset / screenWidth).toInt() + 1, [
+      ExtendedImage.network(_model.originalImageUrl,
+          cache: false,
+          mode: ExtendedImageMode.gesture, initGestureConfigHandler: (state) {
+        return GestureConfig(
+          minScale: widget.minZoomNumber,
+          animationMinScale: 0.7,
+          maxScale: widget.maxZoomNumber,
+          animationMaxScale: 3.5,
+          speed: 1.0,
+          inertialSpeed: 100.0,
+          initialScale: 1.0,
+          inPageView: true,
+          initialAlignment: InitialAlignment.center,
+        );
+      }, loadStateChanged: (ExtendedImageState state) {
+        if (state.extendedImageLoadState == LoadState.loading) {
+          print(state.loadingProgress);
+          return Center(
+            child: CupertinoActivityIndicator(
+              radius: 30,
+            ),
+          );
+        } else if (state.extendedImageLoadState == LoadState.failed) {
+          return Center(
+            child: Text(
+              '失败',
+              style: TextStyle(color: Colors.white),
+            ),
+          );
+        } else {
+          return state.completedWidget;
+        }
+      }),
+    ]);
     setState(() {
-      _scaleNumber = 1;
       _model.isShowOriginalImage = false;
     });
   }
 
-  void doubleTapClick() {
-    if (_scaleNumber < widget.maxZoomNumber) {
-      setState(() {
-        _scaleNumber ++;
-      });
-    }
-//                else if (_scaleNumber > widget.minZoomNumber) {
-//                  setState(() {
-//                    _scaleNumber --;
-//                  });
-//                }
-  }
-
-  void longTapClick() {
-    print('长按');
-  }
-
-  void onHorizontalDragDownClick(DragDownDetails details) {
-    _lastOffset = details.globalPosition;
-  }
-
-  void onHorizontalDragStartClick(DragStartDetails details) {
-    if (details.globalPosition.dx < _lastOffset.dx) {
-      print('向左滑');
-      if (_lastIndex == widget.itemCount - 1) {
-        print('左滑到底了');
-      } else {
-        setState(() {
-          _lastIndex++;
-        });
-      }
-    } else if (details.globalPosition.dx > _lastOffset.dx) {
-      print('向右滑');
-      if (_lastIndex == 0) {
-        print('右滑到底了');
-      } else {
-        setState(() {
-          _lastIndex--;
-        });
-      }
-    }
-    scrollController.animateTo(_lastIndex.toDouble() * screenWidth,
-        duration: Duration(milliseconds: 200),
-        curve: Curves.linear);
-    setState(() {
-      _scaleNumber = 1;
-    });
-  }
-
-  void onScaleStartClick(ScaleStartDetails details) {
-    print(details);
-//    var number = _scaleNumber;
-//    setState(() {
-//      print('开始');
-//      _scaleNumber = number;
-//    });
-  }
-
-  void onScaleUpdateClick(ScaleUpdateDetails details) {
-    print('上次的值==$_scaleNumber');
-    print('这次的值==${details.scale}');
-    if (details.scale - _scaleNumber > 0) {
-      // 放大
-      if (details.scale != 1 && details.scale < widget.maxZoomNumber) {
-        setState(() {
-          print('等于1了1');
-          _scaleNumber = details.scale;
-        });
-      }
-    }
-    if (details.scale - _scaleNumber < 0) {
-      if (details.scale != 1 && _scaleNumber > widget.minZoomNumber) {
-        setState(() {
-          print('等于1了2');
-          _scaleNumber = details.scale;
-        });
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    screenWidth = MediaQuery.of(context).size.width;
+
     return Stack(
       children: <Widget>[
-        ListView.builder(
-          scrollDirection: Axis.horizontal,
-          physics: NeverScrollableScrollPhysics(),
-          controller: scrollController,
-          itemCount: widget.itemCount,
-          itemExtent: screenWidth,
-          itemBuilder: (BuildContext context, int index) {
-            var aa = widget.provider(context, index);
-            if (_imageProviders.contains(aa) == false) {
-              _imageProviders.add(aa);
-            }
-            return GestureDetector(
-              onDoubleTap: doubleTapClick,
-              onLongPress: longTapClick,
-              onHorizontalDragDown: (DragDownDetails details) =>
-                  onHorizontalDragDownClick(details),
-              onHorizontalDragStart: (DragStartDetails details) =>
-                  onHorizontalDragStartClick(details),
-              onScaleStart: (ScaleStartDetails details) =>
-                  onScaleStartClick(details),
-              onScaleUpdate: (ScaleUpdateDetails details) =>
-                  onScaleUpdateClick(details),
-              child: Container(
-                  color: Colors.black,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      Transform.scale(
-                        scale: _scaleNumber,
-                        alignment: Alignment.center,
-                        child: Image(
-                          image: _imageProviders[index],
-                        ),
-                      ),
-                    ],
-                  )
-              ),
-            );
-          },
-        ),
+        ExtendedImageGesturePageView.builder(
+            controller: _pageController,
+            itemCount: widget.itemCount,
+            itemBuilder: (BuildContext context, int index) {
+              var aa = ExtendedImage(
+                image: widget.provider(context, index),
+                mode: ExtendedImageMode.gesture,
+                initGestureConfigHandler: (state) {
+                  return GestureConfig(
+                    minScale: widget.minZoomNumber,
+                    animationMinScale: 0.7,
+                    maxScale: widget.maxZoomNumber,
+                    animationMaxScale: 3.5,
+                    speed: 1.0,
+                    inertialSpeed: 100.0,
+                    initialScale: 1.0,
+                    inPageView: true,
+                    initialAlignment: InitialAlignment.center,
+                  );
+                },
+              );
+              if (_imageProviders.contains(aa) == false) {
+                _imageProviders.add(aa);
+              }
+              return Container(
+                color: Colors.black,
+                child: _imageProviders[index],
+              );
+            }),
         bottomBar(),
       ],
     );
