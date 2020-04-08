@@ -37,7 +37,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        // TODO: Specify your own unique MyApplication ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.weiyian.www.native_record_example"
         minSdkVersion 16
         targetSdkVersion 28
