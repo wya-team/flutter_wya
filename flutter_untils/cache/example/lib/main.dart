@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:cache/cache_until.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
+  void initPlatformState() async {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Cache.systemCache();
+      ByteData data = await rootBundle.load('images/1.jpeg');
+      Uint8List listdata = data.buffer.asUint8List();
+      var aa = await Cache.saveImage(listdata,saveProjectNameAlbum: true);
+      print(aa);
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -67,6 +71,10 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Text('sd卡剩余空间的大小: $_sDFreeSize'),
                 ],
+              ),
+              RaisedButton(
+                child: Text("保存图片"),
+                onPressed: initPlatformState,
               ),
             ],
           ),

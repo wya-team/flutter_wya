@@ -60,9 +60,11 @@ packages:
   extended_image:
     dependency: "direct main"
     description:
-      path: "/Users/lishihang/Desktop/extended_image-master"
-      relative: false
-    source: path
+      path: "flutter_widgets/extended_image-master"
+      ref: HEAD
+      resolved-ref: "30a2850e2225263b7b5ed155f7662077ffbe2c2a"
+      url: "https://github.com/wya-team/flutter_wya.git"
+    source: git
     version: "0.7.2"
   extended_image_library:
     dependency: transitive
