@@ -37,29 +37,178 @@ void showAlertDialog({
   );
 }
 
-void showLoadingDialog({
+/// 列表dialog
+void showListDialog({
+  Key key,
   BuildContext context,
-  Color backgroundColor,
-  double elevation,
-  EdgeInsetsGeometry contentPadding,
-  ShapeBorder shape,
-  Direction direction,
+  String title,
+  String content,
+  List<String> action,
   bool barrierDismissible = true,
+  ShapeBorder shape,
+  List<Widget> actions,
+  @required Function(int index) onItemCallBack,
 }) {
   assert(context != null);
-  assert(direction != null);
-  showDialog<void>(
-    context: context,
-    barrierDismissible: barrierDismissible,
-    builder: (BuildContext context) {
-      return LoadingDialog(
-        direction: direction,
-        elevation: elevation,
-        backgroundColor: backgroundColor,
-        shape: shape,
-      );
-    },
-  );
+  showDialog(
+      context: context,
+      barrierDismissible: barrierDismissible,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          gravity: 0,
+          backgroundColor: Colors.white,
+          elevation: 10,
+          insetAnimationDuration: const Duration(milliseconds: 100),
+          insetAnimationCurve: Curves.decelerate,
+          shape: shape ??
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(6))),
+          child: Container(
+            width: 270,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(top: 14),
+                  child: Text(
+                    title ?? "标题",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 12, right: 12, top: 14),
+                  child: Text(
+                    content ?? "内容容内容内容内容内容内容内容",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 134, 134, 134),
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 14),
+                  child: Divider(
+                      height: 1.0, color: Color.fromARGB(255, 204, 204, 204)),
+                ),
+                Column(
+                  children: actions ??
+                      action
+                          .asMap()
+                          .keys
+                          .map((i) => Column(
+                                children: <Widget>[
+                                  FlatButton(
+                                    child: Text(
+                                      action[i] ?? '知道了',
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 16, 141, 231),
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      onItemCallBack(i);
+                                    },
+                                  ),
+                                  Divider(
+                                      height: 1.0,
+                                      color:
+                                          Color.fromARGB(255, 204, 204, 204)),
+                                ],
+                              ))
+                          .toList(),
+                )
+              ],
+            ),
+          ),
+        );
+      });
+}
+
+/// 普通dialog
+void showNormalDialog({
+  Key key,
+  BuildContext context,
+  String title,
+  String content,
+  List<String> action,
+  bool barrierDismissible = true,
+  ShapeBorder shape,
+  List<Widget> actions,
+  @required Function(int index) onItemCallBack,
+}) {
+  assert(context != null);
+  showDialog(
+      context: context,
+      barrierDismissible: barrierDismissible,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          gravity: 0,
+          backgroundColor: Colors.white,
+          elevation: 10,
+          insetAnimationDuration: const Duration(milliseconds: 100),
+          insetAnimationCurve: Curves.decelerate,
+          shape: shape ??
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(6))),
+          child: Container(
+            width: 270,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(top: 14),
+                  child: Text(
+                    title ?? "标题",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 12, right: 12, top: 14),
+                  child: Text(
+                    content ?? "内容容内容内容内容内容内容内容",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 134, 134, 134),
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 14),
+                  child: Divider(
+                      height: 1.0, color: Color.fromARGB(255, 204, 204, 204)),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: actions ??
+                      action
+                          .asMap()
+                          .keys
+                          .map((i) => FlatButton(
+                                child: Text(
+                                  action[i] ?? '知道了',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 16, 141, 231),
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  onItemCallBack(i);
+                                },
+                              ))
+                          .toList(),
+                )
+              ],
+            ),
+          ),
+        );
+      });
 }
 
 void showSimpleListDialog({
@@ -126,6 +275,107 @@ void showCustomAlertDialog({
     },
   );
 }
+
+void showBottomCustomDialog({
+  Key key,
+  BuildContext context,
+//  bool barrierDismissible = true,
+//  double gravity = 0,
+//  Color backgroundColor,
+//  double elevation,
+//  Duration insetAnimationDuration = const Duration(milliseconds: 100),
+//  Curve insetAnimationCurve = Curves.decelerate,
+//  ShapeBorder shape,
+  Widget child,
+}) {
+  assert(context != null);
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          child: child,
+        );
+      });
+}
+
+void showBottomListDialog({
+  Key key,
+  BuildContext context,
+  String title,
+  String content,
+  List<String> action,
+  bool barrierDismissible = true,
+  List<Widget> actions,
+  @required Function(int index) onItemCallBack,
+  Widget child,
+}) {
+  assert(context != null);
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          width: 270,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(top: 14),
+                child: Text(
+                  title ?? "标题",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 12, right: 12, top: 14),
+                child: Text(
+                  content ?? "内容容内容内容内容内容内容内容",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 134, 134, 134),
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 14),
+                child: Divider(
+                    height: 1.0, color: Color.fromARGB(255, 204, 204, 204)),
+              ),
+              Column(
+                children: actions ??
+                    action
+                        .asMap()
+                        .keys
+                        .map((i) => Column(
+                              children: <Widget>[
+                                FlatButton(
+                                  child: Text(
+                                    action[i] ?? '知道了',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 16, 141, 231),
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    onItemCallBack(i);
+                                  },
+                                ),
+                                Divider(
+                                    height: 1.0,
+                                    color: Color.fromARGB(255, 204, 204, 204)),
+                              ],
+                            ))
+                        .toList(),
+              ),
+            ],
+          ),
+        );
+      });
+}
+
+
 
 void showCustomDialog({
   Key key,
@@ -214,53 +464,53 @@ class LoadingDialog extends Dialog {
       ),
     );
   }
+}
 
-  /// 内容改变
-  Widget _changeDirection(Direction direction) {
-    if (direction.orientations == Orientations.Vertical) {
-      return SizedBox(
-        width: direction.width,
-        height: direction.height ?? direction.width + 20,
-        child: Column(
-          mainAxisAlignment:
-              direction.mainAxisAlignment ?? MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            CircularProgressIndicator(),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Text(
-                direction.message,
-                style: direction.messageStyle,
-              ),
+/// 内容改变
+Widget _changeDirection(Direction direction) {
+  if (direction.orientations == Orientations.Vertical) {
+    return SizedBox(
+      width: direction.width,
+      height: direction.height ?? direction.width + 20,
+      child: Column(
+        mainAxisAlignment:
+        direction.mainAxisAlignment ?? MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          CircularProgressIndicator(),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Text(
+              direction.message,
+              style: direction.messageStyle,
             ),
-          ],
-        ),
-      );
-    } else {
-      return SizedBox(
-        width: direction.width,
-        height: direction.height,
-        child: Row(
-          mainAxisAlignment:
-              direction.mainAxisAlignment ?? MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: CircularProgressIndicator(),
+          ),
+        ],
+      ),
+    );
+  } else {
+    return SizedBox(
+      width: direction.width,
+      height: direction.height,
+      child: Row(
+        mainAxisAlignment:
+        direction.mainAxisAlignment ?? MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: CircularProgressIndicator(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              direction.message,
+              style: direction.messageStyle,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                direction.message,
-                style: direction.messageStyle,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+          ),
+        ],
+      ),
+    );
   }
 }
 
