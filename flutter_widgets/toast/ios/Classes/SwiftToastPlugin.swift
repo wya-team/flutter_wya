@@ -9,6 +9,10 @@ public class SwiftToastPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+    if call.method == "" {
+        
+    } else if call.method == "showToast" {
+
+    }
   }
 }

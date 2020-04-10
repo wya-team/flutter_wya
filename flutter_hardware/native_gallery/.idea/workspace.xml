@@ -2,33 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d59a5d4d-6042-4b2e-9b14-5d38e0104d7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../native_permissions/.metadata" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/.metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/android/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/android/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/android/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/android/src/main/kotlin/com/example/nativepermissions/NativepermissionsPlugin.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/.metadata" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/.metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/android/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/android/app/src/main/kotlin/com/example/nativepermissions_example/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/android/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/android/app/src/profile/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/example/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/example/test/widget_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/ios/Classes/NativepermissionsPlugin.h" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/ios/Classes/NativepermissionsPlugin.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/ios/Classes/NativepermissionsPlugin.m" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/ios/Classes/NativepermissionsPlugin.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/ios/Classes/SwiftNativepermissionsPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/ios/Classes/SwiftNativepermissionsPlugin.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/ios/nativepermissions.podspec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/lib/nativepermissions.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/nativepermissions.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_permissions/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_permissions/test/nativepermissions_test.dart" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/icon_fail.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/icon_fail@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/icon_fail@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/icon_succesful.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/icon_succesful@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/icon_succesful@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/icon_waring.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/icon_waring@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/icon_waring@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_untils/cache/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_untils/cache/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/SwiftToastPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/SwiftToastPlugin.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/toast.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/toast.podspec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/pubspec.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -42,12 +40,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/native_gallery.dart">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -60,9 +65,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1814" />
-    <option name="y" value="-84" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="-1401" />
+    <option name="y" value="10" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -73,12 +78,46 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="native_gallery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="native_gallery" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="native_gallery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="native_gallery" type="462c0819:PsiDirectoryNode" />
+              <item name="ios" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="native_gallery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="native_gallery" type="462c0819:PsiDirectoryNode" />
+              <item name="ios" type="462c0819:PsiDirectoryNode" />
+              <item name="Classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="native_gallery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="native_gallery" type="462c0819:PsiDirectoryNode" />
+              <item name="ios" type="462c0819:PsiDirectoryNode" />
+              <item name="Classes" type="462c0819:PsiDirectoryNode" />
+              <item name="WYAPhotoBrowser" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="native_gallery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="native_gallery" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
@@ -109,39 +148,43 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1814" y="-84" width="1440" height="877" extended-state="0" />
+    <frame x="-1920" y="-217" width="1920" height="1080" extended-state="0" />
     <layout>
-      <window_info id="Structure" side_tool="true" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Build Variants" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="Captures" side_tool="true" />
-      <window_info id="Resources Explorer" />
-      <window_info id="Capture Tool" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
-      <window_info anchor="bottom" id="Dart Analysis" visible="true" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" />
-      <window_info anchor="bottom" id="Logcat" />
-      <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Debug" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Flutter Performance" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Android Profiler" show_stripe_button="false" />
-      <window_info anchor="right" id="Word Book" side_tool="true" />
-      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Flutter Inspector" />
-      <window_info anchor="right" id="Flutter Outline" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18530351" />
+      <window_info id="Capture Tool" order="1" />
+      <window_info id="Captures" order="2" side_tool="true" />
+      <window_info id="Resources Explorer" order="3" />
+      <window_info id="Structure" order="4" side_tool="true" />
+      <window_info id="Build Variants" order="5" side_tool="true" />
+      <window_info id="Image Layers" order="6" />
+      <window_info id="Designer" order="7" />
+      <window_info id="Favorites" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Dart Analysis" order="0" visible="true" weight="0.27029702" />
+      <window_info anchor="bottom" id="TODO" order="1" />
+      <window_info anchor="bottom" id="Android Profiler" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Debug" order="3" />
+      <window_info anchor="bottom" id="Run" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Flutter Performance" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Logcat" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Flutter Inspector" order="2" />
+      <window_info anchor="right" id="Word Book" order="3" side_tool="true" />
+      <window_info anchor="right" id="Flutter Outline" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
     </layout>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lib/native_gallery.dart">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor" />
