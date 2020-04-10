@@ -227,84 +227,114 @@ String formatDate(DateTime date, List<String> formats,
     {Locale locale = const EnglishLocale()}) {
   final sb = StringBuffer();
 
+
   for (String format in formats) {
-    if (format == yyyy) {
-      sb.write(_digits(date.year, 4));
-    } else if (format == yy) {
-      sb.write(_digits(date.year % 100, 2));
-    } else if (format == mm) {
-      sb.write(_digits(date.month, 2));
-    } else if (format == m) {
-      sb.write(date.month);
-    } else if (format == MM) {
-      sb.write(locale.monthsLong[date.month - 1]);
-    } else if (format == M) {
-      sb.write(locale.monthsShort[date.month - 1]);
-    } else if (format == dd) {
-      sb.write(_digits(date.day, 2));
-    } else if (format == d) {
-      sb.write(date.day);
-    } else if (format == w) {
-      sb.write((date.day + 7) ~/ 7);
-    } else if (format == W) {
-      sb.write((dayInYear(date) + 7) ~/ 7);
-    } else if (format == WW) {
-      sb.write(_digits((dayInYear(date) + 7) ~/ 7, 2));
-    } else if (format == DD) {
-      sb.write(locale.daysLong[date.weekday - 1]);
-    } else if (format == D) {
-      sb.write(locale.daysShort[date.weekday - 1]);
-    } else if (format == HH) {
-      sb.write(_digits(date.hour, 2));
-    } else if (format == H) {
-      sb.write(date.hour);
-    } else if (format == hh) {
-      int hour = date.hour % 12;
-      if (hour == 0) hour = 12;
-      sb.write(_digits(hour, 2));
-    } else if (format == h) {
-      int hour = date.hour % 12;
-      if (hour == 0) hour = 12;
-      sb.write(hour);
-    } else if (format == am) {
-      sb.write(date.hour < 12 ? 'AM' : 'PM');
-    } else if (format == nn) {
-      sb.write(_digits(date.minute, 2));
-    } else if (format == n) {
-      sb.write(date.minute);
-    } else if (format == ss) {
-      sb.write(_digits(date.second, 2));
-    } else if (format == s) {
-      sb.write(date.second);
-    } else if (format == SSS) {
-      sb.write(_digits(date.millisecond, 3));
-    } else if (format == S) {
-      sb.write(date.second);
-    } else if (format == uuu) {
-      sb.write(_digits(date.microsecond, 2));
-    } else if (format == u) {
-      sb.write(date.microsecond);
-    } else if (format == z) {
-      if (date.timeZoneOffset.inMinutes == 0) {
-        sb.write('Z');
-      } else {
-        if (date.timeZoneOffset.isNegative) {
-          sb.write('-');
-          sb.write(_digits((-date.timeZoneOffset.inHours) % 24, 2));
-          sb.write(_digits((-date.timeZoneOffset.inMinutes) % 60, 2));
+    switch (format) {
+      case yyyy:
+        sb.write(_digits(date.year, 4));
+        break;
+      case yy:
+        sb.write(_digits(date.year % 100, 2));
+        break;
+      case mm:
+        sb.write(_digits(date.month, 2));
+        break;
+      case m:
+        sb.write(date.month);
+        break;
+      case MM:
+        sb.write(locale.monthsLong[date.month - 1]);
+        break;
+      case M:
+        sb.write(locale.monthsShort[date.month - 1]);
+        break;
+      case dd:
+        sb.write(_digits(date.day, 2));
+        break;
+      case d:
+        sb.write(date.day);
+        break;
+      case w:
+        sb.write((date.day + 7) ~/ 7);
+        break;
+      case W:
+        sb.write((dayInYear(date) + 7) ~/ 7);
+        break;
+      case WW:
+        sb.write(_digits((dayInYear(date) + 7) ~/ 7, 2));
+        break;
+      case DD:
+        sb.write(locale.daysLong[date.weekday - 1]);
+        break;
+      case D:
+        sb.write(locale.daysShort[date.weekday - 1]);
+        break;
+      case HH:
+        sb.write(_digits(date.hour, 2));
+        break;
+      case H:
+        sb.write(date.hour);
+        break;
+      case hh:
+        int hour = date.hour % 12;
+        if (hour == 0) hour = 12;
+        sb.write(_digits(hour, 2));
+        break;
+      case h:
+        int hour = date.hour % 12;
+        if (hour == 0) hour = 12;
+        sb.write(hour);
+        break;
+      case am:
+        sb.write(date.hour < 12 ? 'AM' : 'PM');
+        break;
+      case nn:
+        sb.write(_digits(date.minute, 2));
+        break;
+      case n:
+        sb.write(date.minute);
+        break;
+      case ss:
+        sb.write(_digits(date.second, 2));
+        break;
+      case s:
+        sb.write(date.second);
+        break;
+      case SSS:
+        sb.write(_digits(date.millisecond, 3));
+        break;
+      case S:
+        sb.write(date.second);
+        break;
+      case uuu:
+        sb.write(_digits(date.microsecond, 2));
+        break;
+      case u:
+        sb.write(date.microsecond);
+        break;
+      case z:
+        if (date.timeZoneOffset.inMinutes == 0) {
+          sb.write('Z');
         } else {
-          sb.write('+');
-          sb.write(_digits(date.timeZoneOffset.inHours % 24, 2));
-          sb.write(_digits(date.timeZoneOffset.inMinutes % 60, 2));
+          if (date.timeZoneOffset.isNegative) {
+            sb.write('-');
+            sb.write(_digits((-date.timeZoneOffset.inHours) % 24, 2));
+            sb.write(_digits((-date.timeZoneOffset.inMinutes) % 60, 2));
+          } else {
+            sb.write('+');
+            sb.write(_digits(date.timeZoneOffset.inHours % 24, 2));
+            sb.write(_digits(date.timeZoneOffset.inMinutes % 60, 2));
+          }
         }
-      }
-    } else if (format == Z) {
-      sb.write(date.timeZoneName);
-    } else {
-      sb.write(format);
+        break;
+      case Z:
+        sb.write(date.timeZoneName);
+        break;
+      default:
+        sb.write(format);
+        break;
     }
   }
-
   return sb.toString();
 }
 
@@ -317,4 +347,6 @@ String _digits(int value, int length) {
 }
 
 int dayInYear(DateTime date) =>
-    date.difference(DateTime(date.year, 1, 1)).inDays;
+    date
+        .difference(DateTime(date.year, 1, 1))
+        .inDays;
