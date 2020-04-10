@@ -15,35 +15,30 @@ class _MyAppState extends State<MyApp> {
   }
 
   void showLongToast() {
-    CustomToast.showToast(
-      msg: "This is Long Toast",
-      time: -1,
-    );
+    CustomToast.showToast("This is Long Toast");
   }
 
   void showColoredToast() {
     CustomToast.showToast(
-        msg: "This is Colored Toast with android duration of 5 Sec",
+        "This is Colored Toast with android duration of 5 Sec",
         backgroundColor: Colors.red,
         textColor: Colors.white);
   }
 
   void showShortToast() {
-    CustomToast.showToast(
-      msg: "This is Short Toast",
-    );
+    CustomToast.showToast("This is Short Toast");
   }
 
   void showTopShortToast() {
     CustomToast.showToast(
-      msg: "This is Top Short Toast",
+      "This is Top Short Toast",
       gravity: ToastGravity.TOP,
     );
   }
 
   void showCenterShortToast() {
     CustomToast.showToast(
-      msg: "This is Center Short Toast",
+      "This is Center Short Toast",
       gravity: ToastGravity.CENTER,
     );
   }
@@ -59,16 +54,26 @@ class _MyAppState extends State<MyApp> {
 
   void showSuccess() {
     CustomToast.showLoading(
+      msg: '成功',
         cancelable: true, canceledOnTouchOutside: true, status: 1);
   }
 
   void showFail() {
     CustomToast.showLoading(
+        msg: '失败',
         cancelable: true, canceledOnTouchOutside: true, status: -1);
   }
 
   void cancelLoading() {
     CustomToast.cancelLoading();
+  }
+
+  void waringLoading() {
+    CustomToast.showLoading(
+      msg: '警告',
+      status: -2,
+      canceledOnTouchOutside: true,
+    );
   }
 
   @override
@@ -137,6 +142,13 @@ class _MyAppState extends State<MyApp> {
                 child: new RaisedButton(
                   child: new Text('Show Fail'),
                   onPressed: showFail,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: RaisedButton(
+                  onPressed: waringLoading,
+                  child: Text('waring Loading'),
                 ),
               ),
               new Padding(

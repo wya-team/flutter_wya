@@ -2,31 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d59a5d4d-6042-4b2e-9b14-5d38e0104d7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/icon_fail.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/icon_fail@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_fail.imageset/icon_fail@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/icon_succesful.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/icon_succesful@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_succesful.imageset/icon_succesful@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/icon_waring.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/icon_waring@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/icon_waring.imageset/icon_waring@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/spin.dataset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner/Assets.xcassets/spin.dataset/spin.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_untils/cache/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_untils/cache/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Podfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/SwiftToastPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/SwiftToastPlugin.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.m" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/Classes/UIView+WYAToast.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/toast.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/ios/toast.podspec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/toast/lib/toast.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/toast/lib/toast.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -149,6 +134,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="-217" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18530351" />
       <window_info id="Capture Tool" order="1" />

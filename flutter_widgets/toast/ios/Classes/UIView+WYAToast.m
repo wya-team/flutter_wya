@@ -15,16 +15,16 @@
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define SizeAdapter ScreenWidth/375
-#define FONT(s) [UIFont systemFontOfSize:(s*SizeAdapter)]
+#define FONT(s) [UIFont systemFontOfSize:s]
 
 @implementation UIView (WYAToast)
 
 + (void)wya_showBottomToastWithMessage:(NSString *)message
-{
-    [self wya_showBottomToastWithMessage:message bgViewUserInteractionUse:NO];
-}
-
-+ (void)wya_showBottomToastWithMessage:(NSString *)message bgViewUserInteractionUse:(BOOL)use
+                              showTime:(NSInteger)showTime
+                              fontSize:(double)fontSize
+                       backgroundColor:(UIColor *)backgroundColor
+                             textColor:(UIColor *)textColor
+              bgViewUserInteractionUse:(BOOL)use
 {
     UIView * tagView = [Window viewWithTag:17858629000];
     if (tagView) {
@@ -38,15 +38,15 @@
     [Window addSubview:button];
 
     UIView * view            = [[UIView alloc] init];
-    view.backgroundColor     = random(77, 77, 77, 1);
+    view.backgroundColor     = backgroundColor;
     view.layer.cornerRadius  = 5 * SizeAdapter;
     view.layer.masksToBounds = YES;
     [button addSubview:view];
 
     UILabel * label     = [[UILabel alloc] init];
-    label.font          = FONT(15);
+    label.font          = FONT(fontSize);
     label.text          = message;
-    label.textColor     = [UIColor whiteColor];
+    label.textColor     = textColor;
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
     [view addSubview:label];
@@ -76,9 +76,9 @@
     }];
 
     [UIView animateWithDuration:0.3
-    delay:2
-    options:UIViewAnimationOptionAllowUserInteraction
-    animations:^{
+                          delay:showTime
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
         label.alpha = 0;
         view.alpha  = 0;
     }
@@ -88,11 +88,11 @@
 }
 
 + (void)wya_showCenterToastWithMessage:(NSString *)message
-{
-    [self wya_showCenterToastWithMessage:message bgViewUserInteractionUse:NO];
-}
-
-+ (void)wya_showCenterToastWithMessage:(NSString *)message bgViewUserInteractionUse:(BOOL)use
+                              showTime:(NSInteger)showTime
+                              fontSize:(double)fontSize
+                       backgroundColor:(UIColor *)backgroundColor
+                             textColor:(UIColor *)textColor
+              bgViewUserInteractionUse:(BOOL)use
 {
     UIView * tagView = [Window viewWithTag:17858629000];
     if (tagView) {
@@ -239,19 +239,8 @@
         } break;
         case WYAToastImageTypeSVG: {
 //            UIImage * image;
-//            if (isSource) {
-//                NSString * bundlePath =
-//                [[NSBundle bundleForClass:NSClassFromString(@"WYAAlertController")]
-//                 .resourcePath stringByAppendingPathComponent:@"/WYAKit.bundle"];
-//                NSBundle * resource_bundle = [NSBundle bundleWithPath:bundlePath];
-//                SVGKImage * svgImage       = [SVGKImage imageNamed:imageString inBundle:resource_bundle];
-//                image                      = svgImage.UIImage;
-//            } else {
-//                //                image = [SVGKImage imageNamed:imageString];
-//                image = [UIImage wya_svgImageName:imageString
-//                                             size:CGSizeMake(30 * SizeAdapter, 30 * SizeAdapter)];
-//            }
-//            //            iview = [[SVGKFastImageView alloc] initWithSVGKImage:image];
+//            image = [UIImage wya_svgImageName:imageString
+//            size:CGSizeMake(30 * SizeAdapter, 30 * SizeAdapter)];
 //            iview = [[UIImageView alloc] initWithImage:image];
 //            if (autoRotation) {
 //                [iview wya_setRotationAnimation:360 time:1 repeatCount:0];

@@ -18,35 +18,35 @@ typedef NS_ENUM(NSInteger, WYAToastImageType) {
 
 @interface UIView (WYAToast)
 
-/**
- 位于底部的toast提示框
+/// 位于底部的toast提示框
+/// @param message 信息
+/// @param showTime 展示时间
+/// @param fontSize 字体大小
+/// @param backgroundColor 背景颜色
+/// @param textColor 字体颜色
+/// @param use 底部视图用户交互是否打开
++ (void)wya_showBottomToastWithMessage:(NSString *)message
+                showTime:(NSInteger)showTime
+                fontSize:(double)fontSize
+         backgroundColor:(UIColor *)backgroundColor
+               textColor:(UIColor *)textColor
+bgViewUserInteractionUse:(BOOL)use;
 
- @param message 信息
- */
-+ (void)wya_showBottomToastWithMessage:(NSString *)message;
 
-/**
- 位于底部的toast提示框
+/// 位于屏幕中心的提示框
+/// @param message 信息
+/// @param showTime 展示时间
+/// @param fontSize 字体大小
+/// @param backgroundColor 背景颜色
+/// @param textColor 字体颜色
+/// @param use 底部视图用户交互是否打开
++ (void)wya_showCenterToastWithMessage:(NSString *)message
+                showTime:(NSInteger)showTime
+                fontSize:(double)fontSize
+         backgroundColor:(UIColor *)backgroundColor
+               textColor:(UIColor *)textColor
+bgViewUserInteractionUse:(BOOL)use;
 
- @param message 信息
- @param use 底部视图用户交互是否打开
- */
-+ (void)wya_showBottomToastWithMessage:(NSString *)message bgViewUserInteractionUse:(BOOL)use;
-
-/**
- 位于屏幕中心的提示框
-
- @param message 信息
- */
-+ (void)wya_showCenterToastWithMessage:(NSString *)message;
-
-/**
- 位于屏幕中心的提示框
-
- @param message 信息
- @param use 底部视图用户交互是否打开
- */
-+ (void)wya_showCenterToastWithMessage:(NSString *)message bgViewUserInteractionUse:(BOOL)use;
 /**
  图片提示框
 
