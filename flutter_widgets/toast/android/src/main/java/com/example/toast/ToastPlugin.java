@@ -94,7 +94,7 @@ public class ToastPlugin implements FlutterPlugin, MethodCallHandler, ActivityAw
                     // Custom style
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setColor(bgcolor.intValue());
-                    gradientDrawable.setCornerRadius(dp2px(4.0f));
+                    gradientDrawable.setCornerRadius(dp2px(5.0f));
                     text.setBackground(gradientDrawable);
                     text.setTextSize(textSize.floatValue());
                     text.setTextColor(textcolor.intValue());

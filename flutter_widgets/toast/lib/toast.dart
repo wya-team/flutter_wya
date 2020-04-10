@@ -39,14 +39,6 @@ class CustomToast {
       gravityToast = "bottom";
     }
 
-    if (backgroundColor == null &&
-        defaultTargetPlatform == TargetPlatform.iOS) {
-      backgroundColor = Colors.black;
-    }
-    if (textColor == null && defaultTargetPlatform == TargetPlatform.iOS) {
-      textColor = Colors.white;
-    }
-
     final Map<String, dynamic> params = <String, dynamic>{
       'msg': msg,
       'time': time,
