@@ -8,6 +8,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +21,6 @@ import android.widget.TextView;
  */
 
 public class LoadingDialog extends Dialog {
-    private AnimationDrawable animationDrawable;
     private View view;
     private ColorDrawable colorDrawable;
     private ImageView imgLoad;
@@ -42,16 +43,21 @@ public class LoadingDialog extends Dialog {
         imgLoad = view.findViewById(R.id.img_load);
         hintText = view.findViewById(R.id.hintTv);
         if(status == 0){
-            imgLoad.setBackground(activity.getResources().getDrawable(R.drawable.loading_dialog_anim));
-            animationDrawable = (AnimationDrawable) imgLoad.getBackground();
-            animationDrawable.start();
+            Animation animation = AnimationUtils.loadAnimation
+                    (activity, R.anim.rotate);
+            imgLoad.startAnimation(animation);
+            imgLoad.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_spin));
         } else if(status == 1){
-            imgLoad.setBackground(activity.getResources().getDrawable(R.drawable.icon_succesful));
+            imgLoad.setImageDrawable(activity.getResources().getDrawable(R.drawable.icon_succesful));
             hintText.setText("成功");
             hintText.setVisibility(View.VISIBLE);
         } else if(status == -1){
-            imgLoad.setBackground(activity.getResources().getDrawable(R.drawable.icon_fail));
+            imgLoad.setImageDrawable(activity.getResources().getDrawable(R.drawable.icon_fail));
             hintText.setText("失败");
+            hintText.setVisibility(View.VISIBLE);
+        } else if(status == -2){
+            imgLoad.setImageDrawable(activity.getResources().getDrawable(R.drawable.icon_waring));
+            hintText.setText("警示信息");
             hintText.setVisibility(View.VISIBLE);
         }
 

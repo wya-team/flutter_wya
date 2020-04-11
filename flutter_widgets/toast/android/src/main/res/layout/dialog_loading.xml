@@ -18,8 +18,7 @@
         <ImageView
             android:id="@+id/img_load"
             android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/loading_dialog_anim" />
+            android:layout_height="40dp" />
 
         <TextView
             android:id="@+id/hintTv"
