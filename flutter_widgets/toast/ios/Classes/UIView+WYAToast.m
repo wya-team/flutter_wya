@@ -7,8 +7,9 @@
 
 #import "UIView+WYAToast.h"
 #import <Masonry/Masonry.h>
-//#import <SVGKit/SVGKit.h>
+#import <SVGKit/SVGKit.h>
 #import <objc/runtime.h>
+#import <YYImage/YYImage.h>
 
 #define Window                  ([UIApplication sharedApplication].keyWindow)
 #define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
@@ -238,19 +239,17 @@
 
         } break;
         case WYAToastImageTypeSVG: {
-//            UIImage * image;
-//            image = [UIImage wya_svgImageName:imageString
-//            size:CGSizeMake(30 * SizeAdapter, 30 * SizeAdapter)];
-//            iview = [[UIImageView alloc] initWithImage:image];
-//            if (autoRotation) {
-//                [iview wya_setRotationAnimation:360 time:1 repeatCount:0];
-//            }
+            UIImage * image;
+            image = [UIImage wya_svgImageName:imageString
+            size:CGSizeMake(30 * SizeAdapter, 30 * SizeAdapter)];
+            iview = [[UIImageView alloc] initWithImage:image];
+            if (autoRotation) {
+                [iview wya_setRotationAnimation:360 time:1 repeatCount:0];
+            }
         } break;
         case WYAToastImageTypeGIF: {
-//            NSLog(@"%d", isSource);
-//            NSAssert(isSource == NO, @"只加载项目中的gif图片");
-//            UIImage * image = [YYImage imageNamed:imageString];
-//            iview           = [[YYAnimatedImageView alloc] initWithImage:image];
+            UIImage * image = [YYImage imageNamed:imageString];
+            iview           = [[YYAnimatedImageView alloc] initWithImage:image];
         } break;
         default:
             break;
@@ -380,6 +379,17 @@
     if (block) {
         block(btn);
     }
+}
+
+@end
+
+@implementation UIImage (toast)
+
++ (UIImage *)wya_svgImageName:(NSString *)name size:(CGSize)size
+{
+    SVGKImage * image = [SVGKImage imageNamed:name];
+    image.size        = size;
+    return image.UIImage;
 }
 
 @end

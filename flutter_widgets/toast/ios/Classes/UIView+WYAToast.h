@@ -124,4 +124,9 @@ typedef void (^ButtonActionCallBack)(UIButton * button);
 - (void)addCallBackAction:(ButtonActionCallBack)action;
 @end
 
+@interface UIImage (toast)
++ (UIImage *)wya_svgImageName:(NSString *)name size:(CGSize)size;
+
+@end
+
 NS_ASSUME_NONNULL_END
