@@ -1,4 +1,4 @@
-package android.src.main.java.com.example.cache;
+package com.example.cache;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
