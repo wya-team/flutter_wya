@@ -26,15 +26,11 @@ public class FileUtil {
      * @return
      */
     private static String initPath(String dir) {
-        DST_FOLDER_NAME = dir;
-        if ("".equals(storagePath)) {
-            storagePath = PARENT_PATH.getAbsolutePath() + File.separator + DST_FOLDER_NAME;
-            File f = new File(storagePath);
-            if (!f.exists()) {
-                f.mkdir();
-            }
+        File f = new File(dir);
+        if (!f.exists()) {
+            f.mkdir();
         }
-        return storagePath;
+        return dir;
     }
 
     /**
