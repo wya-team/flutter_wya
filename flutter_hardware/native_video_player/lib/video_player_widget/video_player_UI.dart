@@ -1,14 +1,18 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:native_video_player/common/controller_widget.dart';
+import 'package:native_video_player/common/video_player_pan.dart';
 import 'package:screen/screen.dart';
 import 'package:video_player/video_player.dart';
-import 'controller_widget.dart';
 import 'video_player_control.dart';
-import 'video_player_pan.dart';
 
 enum VideoPlayerType { network, asset, file }
 
+/// 入口控件
+///
+/// 可以播放三种类型的视频，网络、工程视频、本地视频
+/// 分别对应network、asset、file
 class VideoPlayerUI extends StatefulWidget {
   VideoPlayerUI.network({
     Key key,
@@ -16,7 +20,9 @@ class VideoPlayerUI extends StatefulWidget {
     this.width: double.infinity, // 播放器尺寸（大于等于视频播放区域）
     this.height: double.infinity,
     this.title = '', // 视频需要显示的标题
-  })  : type = VideoPlayerType.network,
+    this.isAutoPlayer = true, // 是否需要自动播放
+    this.screenSwitching,
+  })  :type = VideoPlayerType.network,
         url = url,
         super(key: key);
 
@@ -26,7 +32,9 @@ class VideoPlayerUI extends StatefulWidget {
     this.width: double.infinity, // 播放器尺寸（大于等于视频播放区域）
     this.height: double.infinity,
     this.title = '', // 视频需要显示的标题
-  })  : type = VideoPlayerType.asset,
+    this.isAutoPlayer = true, // 是否需要自动播放
+    this.screenSwitching,
+  })  :type = VideoPlayerType.asset,
         url = dataSource,
         super(key: key);
 
@@ -36,7 +44,9 @@ class VideoPlayerUI extends StatefulWidget {
     this.width: double.infinity, // 播放器尺寸（大于等于视频播放区域）
     this.height: double.infinity,
     this.title = '', // 视频需要显示的标题
-  })  : type = VideoPlayerType.file,
+    this.isAutoPlayer = true, // 是否需要自动播放
+    this.screenSwitching,
+  })  :type = VideoPlayerType.file,
         url = file,
         super(key: key);
 
@@ -45,6 +55,9 @@ class VideoPlayerUI extends StatefulWidget {
   final double width;
   final double height;
   final String title;
+  final bool isAutoPlayer;
+  final ScreenSwitching screenSwitching;
+  
 
   @override
   _VideoPlayerUIState createState() => _VideoPlayerUIState();
@@ -66,9 +79,13 @@ class _VideoPlayerUIState extends State<VideoPlayerUI> {
 
   Size get _window => MediaQueryData.fromWindow(window).size;
 
+  bool get isShowAppBar => !_key.currentState.isShowTop;
+
   @override
   void initState() {
     super.initState();
+    // 在initState生命周期中对视频进行初始化，对视频是否加载成功
+    // 显示不用的UI界面：加载中、加载成功、加载失败
     _urlChange(); // 初始进行一次url加载
     Screen.keepOn(true); // 设置屏幕常亮
   }
@@ -106,21 +123,23 @@ class _VideoPlayerUIState extends State<VideoPlayerUI> {
     );
   }
 
-// 判断是否有url
+  /// 判断是否有url,有url进行渲染
   Widget _isHadUrl() {
     if (widget.url != null) {
       return ControllerWidget(
+        screenSwitching: widget.screenSwitching,
         controlKey: _key,
         controller: _controller,
-        videoInit: _videoInit,
+        videoInit: _videoInit,// 视频是否加载完成
         title: widget.title,
+        // 控制视图
         child: VideoPlayerPan(
           child: Container(
             alignment: Alignment.center,
             width: double.infinity,
             height: double.infinity,
             color: Colors.black,
-            child: _isVideoInit(),
+            child: _isVideoInit(),// 视频展示视图
           ),
         ),
       );
@@ -134,7 +153,7 @@ class _VideoPlayerUIState extends State<VideoPlayerUI> {
     }
   }
 
-// 加载url成功时，根据视频比例渲染播放器
+  /// 加载url成功时，根据视频比例渲染播放器
   Widget _isVideoInit() {
     if (_videoInit) {
       return AspectRatio(
@@ -157,6 +176,7 @@ class _VideoPlayerUIState extends State<VideoPlayerUI> {
     }
   }
 
+  /// 获取视频是否加载成功
   void _urlChange() async {
     if (widget.url == null || widget.url == '') return;
     if (_controller != null) {
@@ -183,10 +203,16 @@ class _VideoPlayerUIState extends State<VideoPlayerUI> {
     setState(() {
       _videoInit = true;
       _videoError = false;
-      _controller.play();
+      if(widget.isAutoPlayer){
+        _controller.play();
+      }
     });
   }
 
+  /// 监听
+  ///
+  /// 监听一定要在初始化之前添加，不然后续的加载状态无法响应，在监听函数中
+  /// 我们用了GlobalKey去调用组件方法，刷新子组件时间显示的页面显示
   void _videoListener() async {
     if (_controller.value.hasError) {
       setState(() {
@@ -204,6 +230,7 @@ class _VideoPlayerUIState extends State<VideoPlayerUI> {
           position: res,
           totalDuration: _controller.value.duration,
         );
+
       }
     }
   }
