@@ -1,8 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:native_gallery/native_gallery.dart';
+import 'dart:convert' as convert;
 
 void main() {
   runApp(MyApp());
@@ -14,32 +17,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
+  List<Widget> _childs = [];
   @override
   void initState() {
     super.initState();
-    initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await NativeGallery.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
+  void openAlbum() async {
+    Map<dynamic, dynamic> map = await NativeGallery.openAlbum(maxSelectCount: 5, allowSelectOriginal: true);
+    print(map);
+    List<Widget> wids = [];
+    List list = map["images"];
+    list.forEach((element) async {
+      Uint8List list = await base642Image(element);
+      wids.add(SizedBox(width: 100, height: 100, child: Image.memory(list),));
     });
+    setState(() {
+      _childs = wids;
+    });
+  }
+
+  Future<Uint8List> base642Image(String base64Txt) async {
+    Uint8List list = convert.base64.decode(base64Txt);
+    return list;
   }
 
   @override
@@ -49,8 +49,16 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: Column(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: openAlbum,
+              child: Text('打开相册'),
+            ),
+            Wrap(
+              children: _childs,
+            )
+          ],
         ),
       ),
     );
