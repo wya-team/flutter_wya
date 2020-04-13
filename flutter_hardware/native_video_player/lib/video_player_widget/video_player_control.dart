@@ -229,7 +229,19 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
           ),
         ],
       ),
-    ): Text('');
+    ): Container(
+      width: double.infinity,
+      height: 40,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          // 来点黑色到透明的渐变优雅一下
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [Color.fromRGBO(0, 0, 0, .7), Color.fromRGBO(0, 0, 0, .1)],
+        ),
+      ),
+      child: Text(''),
+    );
   }
 
   void backPress() {

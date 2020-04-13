@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5116df-73a1-4235-beec-6dada1a70e35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/common/controller_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/after_layout.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/after_layout.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/video/controller_widget.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/video/video_player_UI.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/video_player_widget/video_player_UI.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/video/video_player_control.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/video_player_widget/video_player_control.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/video/video_player_pan.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/video_player_pan.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/video/video_player_slider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/common/video_player_slider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/video_player_widget/video_player_control.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/video_player_widget/video_player_control.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../flutter_widgets/segmentcontrol/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_widgets/segmentcontrol/pubspec.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +24,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />

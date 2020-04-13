@@ -469,6 +469,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2+1"
+  volume_watcher:
+    dependency: "direct main"
+    description:
+      name: volume_watcher
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.1.0"
 sdks:
   dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.4 <2.0.0"
