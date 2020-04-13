@@ -77,12 +77,10 @@ public class ToastPlugin implements FlutterPlugin, MethodCallHandler, ActivityAw
                         break;
                 }
                 int mDuration;
-                if (time == -1) {
+                if (time > 2) {
                     mDuration = Toast.LENGTH_LONG;
-                } else if (time == 0) {
-                    mDuration = Toast.LENGTH_SHORT;
                 } else {
-                    mDuration = Toast.LENGTH_LONG;
+                    mDuration = Toast.LENGTH_SHORT;
                 }
 
                 if (bgcolor != null && textcolor != null && textSize != null) {

@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
 
   void showLoading() {
     CustomToast.showLoading(
-        msg: '加载数据中...', cancelable: true, canceledOnTouchOutside: true);
+        msg: '加载中...', cancelable: true, canceledOnTouchOutside: true);
   }
 
   void showSuccess() {
@@ -87,58 +87,58 @@ class _MyAppState extends State<MyApp> {
           child: new Column(
             children: <Widget>[
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                     child: new Text('Show Long Toast'),
                     onPressed: showLongToast),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                     child: new Text('Show Short Toast'),
                     onPressed: showShortToast),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                     child: new Text('Show Center Short Toast'),
                     onPressed: showCenterShortToast),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                     child: new Text('Show Top Short Toast'),
                     onPressed: showTopShortToast),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                     child: new Text('Show Colored Toast'),
                     onPressed: showColoredToast),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                   child: new Text('Cancel Toasts'),
                   onPressed: cancelToast,
                 ),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                   child: new Text('Show Loading'),
                   onPressed: showLoading,
                 ),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                   child: new Text('Show Success'),
                   onPressed: showSuccess,
                 ),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                   child: new Text('Show Fail'),
                   onPressed: showFail,
@@ -152,7 +152,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
               new Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 3.0),
                 child: new RaisedButton(
                   child: new Text('Cancel Loading'),
                   onPressed: cancelLoading,

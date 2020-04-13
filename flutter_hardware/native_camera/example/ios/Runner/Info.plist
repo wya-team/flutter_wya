@@ -10,6 +10,10 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+    <key>NSCameraUsageDescription</key>
+    <string>sasd</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>sasdsdd</string>
 	<key>CFBundleName</key>
 	<string>native_camera_example</string>
 	<key>CFBundlePackageType</key>

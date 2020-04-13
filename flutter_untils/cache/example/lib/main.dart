@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cache/cache_until.dart';
@@ -30,8 +29,10 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       ByteData data = await rootBundle.load('images/1.jpeg');
+      String path = '/storage/emulated/0/wya/image';
       Uint8List listdata = data.buffer.asUint8List();
-      var aa = await Cache.saveImage(listdata,saveProjectNameAlbum: true);
+      var aa = await Cache.saveImage(listdata,
+          path: path, saveProjectNameAlbum: true);
       print(aa);
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';

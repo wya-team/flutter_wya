@@ -66,8 +66,8 @@ class CustomToast {
       params["bgcolor"] = backgroundColor != null
           ? backgroundColor.value
           : Color.fromRGBO(48, 48, 48, 1).value;
-      params["textcolor"] = backgroundColor != null
-          ? backgroundColor.value
+      params["textcolor"] = textColor != null
+          ? textColor.value
           : Color.fromRGBO(255, 255, 255, 1).value;
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       params["bgcolor"] = backgroundColor != null
