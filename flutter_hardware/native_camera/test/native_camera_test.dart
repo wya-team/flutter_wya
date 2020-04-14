@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:native_camera/native_camera.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('native_camera');
@@ -17,4 +16,6 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
+  test('getPlatformVersion', () async {
+  });
 }
