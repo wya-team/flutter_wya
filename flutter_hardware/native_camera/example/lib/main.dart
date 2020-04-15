@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
 
   void openCamera() async {
     Map<String, dynamic> map = await NativeCamera.openCamera();
+    print(map);
     base642Image(map["imageBase64"]);
   }
 
