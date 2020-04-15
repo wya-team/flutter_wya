@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d59a5d4d-6042-4b2e-9b14-5d38e0104d7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../native_camera/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_camera/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../native_camera/lib/native_camera.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/lib/native_camera.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d59a5d4d-6042-4b2e-9b14-5d38e0104d7f" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
