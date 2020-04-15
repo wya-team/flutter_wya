@@ -1,14 +1,17 @@
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:native_video_player/video_player_widget/video_player_control.dart';
 import 'package:screen/screen.dart';
 
-//import 'package:screen/screen.dart';
 import 'package:video_player/video_player.dart';
 
-import '../after_layout.dart';
+import 'after_layout.dart';
 import 'controller_widget.dart';
-import 'video_player_control.dart';
 
+/// 手势处理类
+///
+/// 右侧滑动调节音量
+/// 左侧滑动调节亮度
 class VideoPlayerPan extends StatefulWidget {
   VideoPlayerPan({
 //    this.controlKey,

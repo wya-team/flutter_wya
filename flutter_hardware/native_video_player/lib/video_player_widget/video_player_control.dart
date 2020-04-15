@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:auto_orientation/auto_orientation.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:video_player/video_player.dart';
+import 'package:native_video_player/common/controller_widget.dart';
+import 'package:native_video_player/common/video_player_slider.dart';
 
-import 'controller_widget.dart';
-import 'video_player_slider.dart';
+import 'package:video_player/video_player.dart';
 
 class VideoPlayerControl extends StatefulWidget {
   VideoPlayerControl({
@@ -24,6 +23,7 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
   String get title=>ControllerWidget.of(context).title;
   // 记录video播放进度
   Duration _position = Duration(seconds: 0);
+  // 总时长
   Duration _totalDuration = Duration(seconds: 0);
   Timer _timer; // 计时器，用于延迟隐藏控件ui
   bool _hidePlayControl = true; // 控制是否隐藏控件ui
@@ -31,6 +31,10 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
   /// 记录是否全屏
   bool get _isFullScreen =>
       MediaQuery.of(context).orientation == Orientation.landscape;
+
+  ScreenSwitching get screenSwitching => ControllerWidget.of(context).screenSwitching;
+
+  bool isShowTop = false;
 
   @override
   void dispose() {
@@ -49,7 +53,12 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
         width: double.infinity,
         height: double.infinity,
         color: Colors.transparent,
+        /// 防止误触发生操作
         child: WillPopScope(
+          /// Offstage的功能即在视觉上隐藏Widget，设定参数为_offstage，为true即隐藏，
+          /// 反之则相反如果是true的，则将子元素放置在树中，但是不绘制任何内容，
+          /// 不让子元素用于hit测试，也不占用父元素中的任何空间。如果为false，
+          /// 则将子元素作为正常值包含在树中。
           child: Offstage(
             offstage: _hidePlayControl,
             child: AnimatedOpacity(
@@ -84,6 +93,7 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
     });
   }
 
+  /// 底部控制组件
   Widget _bottom(BuildContext context) {
     return Container(
       // 底部控件的容器
@@ -111,6 +121,17 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
             ),
             onPressed: _playOrPause,
           ),
+          Container(
+            // 播放时间
+            margin: EdgeInsets.only(left: 10),
+            child: Text(
+              '${DateUtil.formatDateMs(
+                _position?.inMilliseconds,
+                format: 'mm:ss',
+              )}',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
           Expanded(
             // 相当于前端的flex: 1
             child: VideoPlayerSlider(
@@ -123,6 +144,17 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
             margin: EdgeInsets.only(left: 10),
             child: Text(
               '${DateUtil.formatDateMs(
+                _totalDuration?.inMilliseconds,
+                format: 'mm:ss',
+              )}',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          /*    Container(
+            // 播放时间
+            margin: EdgeInsets.only(left: 10),
+            child: Text(
+              '${DateUtil.formatDateMs(
                 _position?.inMilliseconds,
                 format: 'mm:ss',
               )}/${DateUtil.formatDateMs(
@@ -131,7 +163,7 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
               )}',
               style: TextStyle(color: Colors.white),
             ),
-          ),
+          ),*/
           IconButton(
             // 全屏/横屏按钮
             padding: EdgeInsets.zero,
@@ -158,7 +190,7 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
   }
 
   Widget _top() {
-    return Container(
+    return isShowTop ? Container(
       width: double.infinity,
       height: 40,
       decoration: BoxDecoration(
@@ -176,11 +208,11 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
           ModalRoute.of(context).isFirst && !_isFullScreen
               ? Container()
               : IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                  onPressed: backPress),
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
+              onPressed: backPress),
           Text(
             title,
             style: TextStyle(color: Colors.white),
@@ -189,14 +221,26 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
           ModalRoute.of(context).isFirst && !_isFullScreen
               ? Container()
               : IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.transparent,
-                  ),
-                  onPressed: () {},
-                ),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.transparent,
+            ),
+            onPressed: () {},
+          ),
         ],
       ),
+    ): Container(
+      width: double.infinity,
+      height: 40,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          // 来点黑色到透明的渐变优雅一下
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [Color.fromRGBO(0, 0, 0, .7), Color.fromRGBO(0, 0, 0, .1)],
+        ),
+      ),
+      child: Text(''),
     );
   }
 
@@ -218,8 +262,10 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
       controller.value.isPlaying ? controller.pause() : controller.play();
       _startPlayControlTimer(); // 操作控件后，重置延迟隐藏控件的timer
     }
+    _togglePlayControl();
   }
 
+  /// 轻触屏幕会弹出操作按钮，两秒后消失
   void _togglePlayControl() {
     setState(() {
       if (_hidePlayControl) {
@@ -256,18 +302,31 @@ class VideoPlayerControlState extends State<VideoPlayerControl> {
     setState(() {
       if (_isFullScreen) {
         /// 如果是全屏就切换竖屏
-        AutoOrientation.portraitAutoMode();
-
+        setState(() {
+          isShowTop = false;
+        });
+//        AutoOrientation.portraitAutoMode();
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown
+        ]);
         ///显示状态栏，与底部虚拟操作按钮
         SystemChrome.setEnabledSystemUIOverlays(
             [SystemUiOverlay.top, SystemUiOverlay.bottom]);
       } else {
-        AutoOrientation.landscapeAutoMode();
-
+        setState(() {
+          isShowTop = true;
+        });
+//        AutoOrientation.landscapeAutoMode();
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeRight
+//          DeviceOrientation.landscapeLeft,
+        ]);
         ///关闭状态栏，与底部虚拟操作按钮
         SystemChrome.setEnabledSystemUIOverlays([]);
       }
       _startPlayControlTimer(); // 操作完控件开始计时隐藏
+      screenSwitching(!isShowTop);
     });
   }
 }

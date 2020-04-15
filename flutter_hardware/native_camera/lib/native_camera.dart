@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:flutter/services.dart';
 
@@ -57,7 +56,7 @@ class NativeCamera {
     } else {
       map["videoPreset"] = 2;
     }
-    final Map<String, dynamic> version = new Map<String, dynamic>.from(await _channel.invokeMethod('openCamera', map));
+    Map<String, dynamic> version = new Map<String, dynamic>.from(await _channel.invokeMethod('openCamera', map));
     return version;
   }
 }

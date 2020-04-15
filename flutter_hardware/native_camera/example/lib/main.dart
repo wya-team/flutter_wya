@@ -1,9 +1,7 @@
+import 'dart:convert' as convert;
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:convert' as convert;
-import 'package:flutter/services.dart';
 import 'package:native_camera/native_camera.dart';
 
 void main() {
@@ -26,7 +24,8 @@ class _MyAppState extends State<MyApp> {
 
   void openCamera() async {
     Map<String, dynamic> map = await NativeCamera.openCamera();
-    print(map);
+    print(map["imagePath"].toString());
+    print(map["videoPath"].toString());
     base642Image(map["imageBase64"]);
   }
 
