@@ -62,7 +62,7 @@ class NativeGallery {
     }
 
     final Map<dynamic, dynamic> version =
-        await _channel.invokeMethod('openAlbum',map);
+        await _channel.invokeMethod('native_gallery',map);
     return version;
   }
 }

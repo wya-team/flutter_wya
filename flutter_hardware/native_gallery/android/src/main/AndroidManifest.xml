@@ -1,3 +1,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.weiyian.www.native_gallery">
+    package="com.weiyian.www.native_gallery">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+
+    <!--android:theme="@style/KitTheme"-->
+    <application>
+        <activity
+            android:name=".gallery.PicturePreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GalleryTheme" />
+        <activity
+            android:name=".imagepicker.ImagePickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GalleryTheme" />
+        <activity
+            android:name=".imagecrop.CropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GalleryTheme" />
+
+        <provider
+            android:name=".imagepicker.PickerProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
 </manifest>
