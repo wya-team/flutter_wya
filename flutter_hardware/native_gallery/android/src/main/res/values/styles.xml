@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="GalleryCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/picture_checkbox_selector</item>
+    </style>
+
+    <style name="ImageTextDialog" parent="android:Theme.Holo.Dialog">
+
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:windowSoftInputMode">stateAlwaysVisible|adjustResize</item>
+
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.8</item>
+
+        <item name="android:windowAnimationStyle">@style/ImageDialogAnimation</item>
+
+    </style>
+
+    <style name="ImageDialogAnimation" parent="android:Animation.Dialog">
+
+        <item name="android:windowEnterAnimation">@anim/image_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/image_dialog_exit</item>
+
+    </style>
+
+    <style name="GalleryTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+</resources>
