@@ -95,6 +95,9 @@ class _ImagePreviewState extends State<ImagePreview> {
     // TODO: implement initState
     super.initState();
     _lastIndex = widget.selectIndex;
+    for (var i = 0; i<widget.itemCount; i++){
+      _imageProviders.add(ExtendedImage(image: AssetImage(''),));
+    }
     if (widget.modelCallback != null) {
       _model = widget.modelCallback(0);
     }
@@ -280,7 +283,7 @@ class _ImagePreviewState extends State<ImagePreview> {
             controller: _pageController,
             itemCount: widget.itemCount,
             itemBuilder: (BuildContext context, int index) {
-              var aa = ExtendedImage(
+              Widget aa = ExtendedImage(
                 image: widget.provider(context, index),
                 mode: ExtendedImageMode.gesture,
                 initGestureConfigHandler: (state) {
@@ -298,7 +301,7 @@ class _ImagePreviewState extends State<ImagePreview> {
                 },
               );
               if (_imageProviders.contains(aa) == false) {
-                _imageProviders.add(aa);
+                _imageProviders.replaceRange(index, index+1, [aa]);
               }
               return Container(
                 color: Colors.black,
