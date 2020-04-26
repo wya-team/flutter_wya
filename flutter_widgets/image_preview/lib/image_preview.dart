@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 typedef ImagePreviewProvider = ImageProvider<dynamic> Function(
     BuildContext context, int index);
 typedef ImagePreviewModelCallback = ImagePreviewModel Function(int index);
-typedef ImageDownloadCallback = Function(int index);
+typedef ImageActionCallback = Function(int index);
 
 enum PageControlStyle {
   none,
@@ -41,7 +41,7 @@ class ImagePreview extends StatefulWidget {
     @required this.itemCount,
     this.selectIndex = 0,
     this.modelCallback,
-    this.downloadCallback,
+    this.actionCallback,
     this.pageControlStyle = PageControlStyle.none,
     this.minZoomNumber = 1.0,
     this.maxZoomNumber = 3.0,
@@ -56,7 +56,7 @@ class ImagePreview extends StatefulWidget {
   ImagePreviewModelCallback modelCallback;
 
   /// 下载按钮回调
-  ImageDownloadCallback downloadCallback;
+  ImageActionCallback actionCallback;
 
   /// 默认选中的下标
   int selectIndex;
@@ -147,24 +147,34 @@ class _ImagePreviewState extends State<ImagePreview> {
           Padding(
             padding: EdgeInsets.only(right: 20),
             child: SizedBox.fromSize(
-              size: Size(120, 44),
+              size: Size(144, 44),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Container(
-                    width: 20,
-                    height: 20,
-                    color: Colors.red,
+                  IconButton(
+                    icon: Image.asset('images/icon_photo_download.png', package: 'image_preview'),
+                    color: Colors.white,
+                    onPressed: (){
+                      if (widget.actionCallback != null) {
+                        widget.actionCallback(0);
+                      }
+                    },
                   ),
-                  Container(
-                    width: 20,
-                    height: 20,
-                    color: Colors.red,
+                  IconButton(
+                    icon: Image.asset('images/icon_photo_view.png', package: 'image_preview'),
+                    onPressed: (){
+                      if (widget.actionCallback != null) {
+                        widget.actionCallback(1);
+                      }
+                    },
                   ),
-                  Container(
-                    width: 20,
-                    height: 20,
-                    color: Colors.red,
+                  IconButton(
+                    icon: Image.asset('images/icon_photo_operation.png', package: 'image_preview'),
+                    onPressed: (){
+                      if (widget.actionCallback != null) {
+                        widget.actionCallback(2);
+                      }
+                    },
                   ),
                 ],
               ),
