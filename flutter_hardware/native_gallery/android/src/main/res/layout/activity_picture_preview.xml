@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c232323"
+    android:orientation="vertical"
+    tools:context=".gallery.PicturePreviewActivity">
+
+
+    <com.weiyian.www.native_gallery.gallery.PreviewViewPager
+        android:id="@+id/preview_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--title-->
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/c232323">
+
+        <ImageView
+            android:id="@+id/picture_left_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/picture_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:maxEms="11"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_check"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <CheckBox
+                android:id="@+id/check"
+                style="@style/GalleryCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/select_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/select_bar_layout"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/select_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#aa000000" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="@color/white" />
+    </LinearLayout>
+
+    <!--bottom-->
+    <RelativeLayout
+        android:id="@+id/select_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="#aa000000"
+        android:gravity="center_vertical">
+
+       <TableRow
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <TableRow
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1">
+
+               <TextView
+                   android:id="@+id/crop_edit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_marginLeft="2dp"
+                   android:gravity="center"
+                   android:padding="10dp"
+                   android:text="编辑"
+                   android:textColor="@color/white"
+                   android:textSize="15sp" />
+
+
+           </TableRow>
+
+
+           <TableRow
+               android:id="@+id/tab_original"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center"
+               android:padding="10dp">
+
+
+               <CheckBox
+                   android:id="@+id/check_original"
+                   style="@style/GalleryCheckBox"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginRight="10dp"/>
+
+               <TextView
+                   android:id="@+id/tv_original"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:enabled="false"
+                   android:gravity="center"
+                   android:text="原图"
+                   android:textColor="@color/white"
+                   android:textSize="15sp" />
+
+
+           </TableRow>
+
+           <TableRow
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:gravity="right|center">
+
+               <TextView
+                   android:id="@+id/tv_ok"
+                   android:layout_width="wrap_content"
+                   android:layout_height="30dp"
+                   android:layout_marginRight="12dp"
+                   android:background="@drawable/sure_normal_bg"
+                   android:enabled="false"
+                   android:gravity="center"
+                   android:paddingLeft="10dp"
+                   android:paddingRight="10dp"
+                   android:text="完成"
+                   android:textColor="@color/white"
+                   android:textSize="14sp" />
+           </TableRow>
+
+       </TableRow>
+
+    </RelativeLayout>
+
+</RelativeLayout>

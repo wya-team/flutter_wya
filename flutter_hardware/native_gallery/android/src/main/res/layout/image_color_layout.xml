@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IMGColorGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cg_colors"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:checkedButton="@+id/cr_white"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="4dp">
+
+
+    <com.weiyian.www.native_gallery.imagecrop.view.EditColorRadio
+        android:id="@+id/cr_white"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="6dp"
+        app:image_color="@color/white" />
+
+    <com.weiyian.www.native_gallery.imagecrop.view.EditColorRadio
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="6dp"
+        app:image_color="@color/black" />
+
+    <com.weiyian.www.native_gallery.imagecrop.view.EditColorRadio
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="6dp"
+        app:image_color="@color/red" />
+
+    <com.weiyian.www.native_gallery.imagecrop.view.EditColorRadio
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="6dp"
+        app:image_color="@color/color_orange" />
+
+    <com.weiyian.www.native_gallery.imagecrop.view.EditColorRadio
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="6dp"
+        app:image_color="@color/progress_start" />
+
+    <com.weiyian.www.native_gallery.imagecrop.view.EditColorRadio
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="6dp"
+        app:image_color="@color/segment_default" />
+
+</IMGColorGroup>

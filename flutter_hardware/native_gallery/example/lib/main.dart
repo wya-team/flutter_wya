@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void openAlbum() async {
-    Map<dynamic, dynamic> map = await NativeGallery.openAlbum(maxSelectCount: 5, allowSelectOriginal: true);
+    Map<dynamic, dynamic> map = await NativeGallery.openAlbum(maxSelectCount: 5, allowSelectOriginal: false, canTakePicture: false, allowEditImage: true,allowSelectVideo: false, allowChoosePhotoAndVideo: false);
     print(map);
     List<Widget> wids = [];
     List list = map["images"];
