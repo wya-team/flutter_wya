@@ -226,7 +226,10 @@
     UIView * iview;
     switch (imageType) {
         case WYAToastImageTypePNG: {
-            UIImage * image = [UIImage imageNamed:imageString];
+            NSString * bundlePath = [[NSBundle bundleForClass:NSClassFromString(@"UIView+WYAToast")]
+                                     .resourcePath stringByAppendingPathComponent:@"/Frameworks/toast.framework/toast.bundle"];
+            NSBundle * resource_bundle = [NSBundle bundleWithPath:bundlePath];
+            UIImage * image = [UIImage imageNamed:imageString inBundle:resource_bundle compatibleWithTraitCollection:nil];
 
             iview = [[UIImageView alloc] initWithImage:image];
             if (autoRotation) {
@@ -387,7 +390,11 @@
 
 + (UIImage *)wya_svgImageName:(NSString *)name size:(CGSize)size
 {
-    SVGKImage * image = [SVGKImage imageNamed:name];
+    NSString * bundlePath = [[NSBundle bundleForClass:NSClassFromString(@"UIView+WYAToast")]
+                             .resourcePath stringByAppendingPathComponent:@"/Frameworks/toast.framework/toast.bundle"];
+    NSBundle * resource_bundle = [NSBundle bundleWithPath:bundlePath];
+
+    SVGKImage * image = [SVGKImage imageNamed:name inBundle:resource_bundle];
     image.size        = size;
     return image.UIImage;
 }
