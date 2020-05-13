@@ -181,7 +181,7 @@ class SqliteFile<T> {
   /// tableName 表名
   /// where 条件 example：'age=?'
   /// list 条件中对应的值 example：[18,20]
-  Future<int> delete(String tableName, String where, List<dynamic> list) async {
+  Future<int> delete(String tableName, {String where, List<dynamic> list}) async {
     return await database.delete(tableName, where: where, whereArgs: list);
   }
 

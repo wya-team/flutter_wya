@@ -84,6 +84,7 @@ class TableView extends StatefulWidget {
     this.sectionHeaderView,
     this.sectionFooterView,
     @required this.rowView,
+    this.scrollController,
   }) : super(key: key);
   /// 表头视图
   final Widget tableHeaderView;
@@ -99,6 +100,9 @@ class TableView extends StatefulWidget {
   NumberRowOfSection numberRowOfSection;
   /// 每行的视图
   RowView rowView;
+
+  ScrollController scrollController;
+  
   @override
   _TableViewState createState() => _TableViewState();
 }
@@ -153,6 +157,7 @@ class _TableViewState extends State<TableView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      controller: widget.scrollController,
       itemBuilder: (BuildContext context, int index) {
         if (widget.tableHeaderView != null && index == 0) {
           return widget.tableHeaderView;
