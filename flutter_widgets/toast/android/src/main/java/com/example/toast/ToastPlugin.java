@@ -137,6 +137,7 @@ public class ToastPlugin implements FlutterPlugin, MethodCallHandler, ActivityAw
                     mLoading.setText(msg);
                 }
                 mLoading.show();
+                result.success(true);
                 break;
             default:
                 result.notImplemented();
