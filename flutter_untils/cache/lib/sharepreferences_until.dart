@@ -29,5 +29,10 @@ class ShardPreferences {
     var prefs = await SharedPreferences.getInstance();
     return prefs.get(key);
   }
+
+  static Future<bool> delete(String key) async {
+    var prefs = await SharedPreferences.getInstance();
+    return prefs.remove(key);
+  }
 }
 
