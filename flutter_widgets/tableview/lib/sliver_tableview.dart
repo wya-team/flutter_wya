@@ -25,7 +25,7 @@ class SliverTableDelegate extends SliverChildDelegate {
   SliverTableDelegate(
       {this.tableHeaderView,
         this.tableFooterView,
-        this.sectionNumber = 1,
+        @required this.sectionNumber,
         this.sectionHeaderView,
         this.sectionFooterView,
         @required this.numberRowOfSection,
@@ -88,10 +88,10 @@ class SliverTableDelegate extends SliverChildDelegate {
   @override
   Widget build(BuildContext context, int index) {
     print('index:'+ index.toString());
-    if (index < 0 || (sectionNumber != null && index >= sectionNumber))
+    checkAllCount();
+    if (index < 0 || (allCount != null && index >= allCount))
       return null;
 
-    checkAllCount();
     // TODO: implement build
     if (this.tableHeaderView != null && index == 0) {
       return this.tableHeaderView;
