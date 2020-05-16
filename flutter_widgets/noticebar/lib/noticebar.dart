@@ -15,11 +15,17 @@ class NoticeBar extends StatefulWidget {
     @required this.textList,
     this.backgroundColor = Colors.white,
   }) : super();
+
   Axis scrollDirection;
+
   bool reverse;
+
   Widget leftWidget;
+
   Widget rightWidget;
+
   List<String> textList;
+
   Color backgroundColor;
 
   @override

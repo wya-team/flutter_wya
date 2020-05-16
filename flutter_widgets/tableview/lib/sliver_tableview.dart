@@ -21,17 +21,29 @@ class SliverTableView extends SliverList {
   }
 }
 
+int _lshDefaultSemanticIndexCallback(Widget _, int localIndex) => localIndex;
+
 class SliverTableDelegate extends SliverChildDelegate {
-  SliverTableDelegate(
-      {this.tableHeaderView,
-        this.tableFooterView,
-        @required this.sectionNumber,
-        this.sectionHeaderView,
-        this.sectionFooterView,
-        @required this.numberRowOfSection,
-        @required this.rowView})
+  SliverTableDelegate({
+    this.tableHeaderView,
+    this.tableFooterView,
+    @required this.sectionNumber,
+    this.sectionHeaderView,
+    this.sectionFooterView,
+    @required this.numberRowOfSection,
+    @required this.rowView,
+    this.addAutomaticKeepAlives = true,
+    this.addRepaintBoundaries = true,
+    this.addSemanticIndexes = true,
+    this.semanticIndexCallback = _lshDefaultSemanticIndexCallback,
+    this.semanticIndexOffset = 0
+  })
       : assert(numberRowOfSection != null),
-        assert(rowView != null);
+        assert(rowView != null),
+        assert(addAutomaticKeepAlives != null),
+        assert(addRepaintBoundaries != null),
+        assert(addSemanticIndexes != null);
+
 
   /// 表头视图
   final Widget tableHeaderView;
@@ -54,9 +66,14 @@ class SliverTableDelegate extends SliverChildDelegate {
   /// 每行的视图
   RowView rowView;
 
-  int allCount = 0;
+  final bool addAutomaticKeepAlives;
+  final bool addRepaintBoundaries;
+  final bool addSemanticIndexes;
+  final int semanticIndexOffset;
+  final SemanticIndexCallback semanticIndexCallback;
 
-  void checkAllCount() {
+  int checkAllCount() {
+    int allCount = 0;
     if (this.tableHeaderView != null) {
       allCount += 1;
     }
@@ -64,15 +81,22 @@ class SliverTableDelegate extends SliverChildDelegate {
     if (this.tableFooterView != null) {
       allCount += 1;
     }
+    return allCount;
   }
 
   Widget sectionView(BuildContext context, int section) {
     List<Widget> rows = [];
+    var index = this.numberRowOfSection(context, section);
+    if (this.sectionHeaderView == null &&
+        this.sectionFooterView == null &&
+        index == 0) {
+      return null;
+    }
+
     if (this.sectionHeaderView != null) {
       rows.add(this.sectionHeaderView(context, section));
     }
 
-    var index = this.numberRowOfSection(context, section);
     for (var i = 0; i < index; i++) {
       rows.add(this.rowView(context, section, i));
     }
@@ -86,24 +110,44 @@ class SliverTableDelegate extends SliverChildDelegate {
   }
 
   @override
-  Widget build(BuildContext context, int index) {
-    print('index:'+ index.toString());
-    checkAllCount();
-    if (index < 0 || (allCount != null && index >= allCount))
-      return null;
+  int get estimatedChildCount {
+    return checkAllCount();
+  }
 
-    // TODO: implement build
-    if (this.tableHeaderView != null && index == 0) {
-      return this.tableHeaderView;
+  @override
+  Widget build(BuildContext context, int index) {
+//    print('index:'+ index.toString());
+    int count = checkAllCount();
+    if (index < 0 || (count != null && index >= count)) return null;
+
+    Widget child;
+    try {
+      if (this.tableHeaderView != null && index == 0) {
+        child = this.tableHeaderView;
+      } else if (this.tableHeaderView != null &&
+          this.tableFooterView != null &&
+          index == count - 1) {
+        child = this.tableFooterView;
+      } else {
+        child = sectionView(
+            context, this.tableHeaderView != null ? index - 1 : index);
+      }
+    } catch (exception, stackTrace) {
+      child = _createErrorWidget(exception, stackTrace);
     }
-    if (this.tableHeaderView != null &&
-        this.tableFooterView != null &&
-        index == allCount - 1) {
-      return this.tableFooterView;
+    if (child == null)
+      return null;
+    final Key key = child.key != null ? _MySaltedValueKey(child.key) : null;
+
+    if (addRepaintBoundaries) child = RepaintBoundary(child: child);
+    if (addSemanticIndexes) {
+      final int semanticIndex = semanticIndexCallback(child, index);
+      if (semanticIndex != null)
+        child = IndexedSemantics(
+            index: semanticIndex + semanticIndexOffset, child: child);
     }
-    return sectionView(
-        context, this.tableHeaderView != null ? index - 1 : index);
-//    throw UnimplementedError();
+    if (addAutomaticKeepAlives) child = AutomaticKeepAlive(child: child);
+    return KeyedSubtree(child: child, key: key);
   }
 
   @override
@@ -112,4 +156,19 @@ class SliverTableDelegate extends SliverChildDelegate {
     return true;
 //    throw UnimplementedError();
   }
+
+  Widget _createErrorWidget(dynamic exception, StackTrace stackTrace) {
+    final FlutterErrorDetails details = FlutterErrorDetails(
+      exception: exception,
+      stack: stackTrace,
+      library: 'widgets library',
+      context: ErrorDescription('building'),
+    );
+    FlutterError.reportError(details);
+    return ErrorWidget.builder(details);
+  }
+}
+
+class _MySaltedValueKey extends ValueKey<Key>{
+  const _MySaltedValueKey(Key key): assert(key != null), super(key);
 }

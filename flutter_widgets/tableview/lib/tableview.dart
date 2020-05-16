@@ -6,6 +6,7 @@ typedef SectionHeaderView = Widget Function(BuildContext context, int index);
 typedef SectionFooterView = Widget Function(BuildContext context, int index);
 typedef NumberRowOfSection = int Function(BuildContext context, int index);
 typedef RowView = Widget Function(BuildContext context, int section, int row);
+typedef HeaderRefresh = Widget Function();
 
 class TableView extends StatefulWidget {
   TableView({
