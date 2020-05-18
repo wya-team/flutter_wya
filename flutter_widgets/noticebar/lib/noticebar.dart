@@ -55,7 +55,6 @@ class _NoticeBarState extends State<NoticeBar>
   void didUpdateWidget(NoticeBar oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-
   }
 
   @override
@@ -70,34 +69,34 @@ class _NoticeBarState extends State<NoticeBar>
   void reloadSubviews() {
     List<Widget> widgets = [];
 
-      List<Widget> aa = [];
-      widget.textList.forEach((element) {
-        aa.add(Container(
-          height: 44,
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: EdgeInsets.only(left: _image_width),
-            child: Text(
-              element,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                backgroundColor: widget.backgroundColor,
-              ),
-              maxLines: 1,
+    List<Widget> aa = [];
+    widget.textList.forEach((element) {
+      aa.add(Container(
+        height: 44,
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: EdgeInsets.only(left: _image_width),
+          child: Text(
+            element,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              backgroundColor: Colors.transparent,
             ),
+            maxLines: 1,
           ),
-        ));
-      });
-      widgets.add(
-        ListView(
-          reverse: widget.reverse,
-          scrollDirection: widget.scrollDirection,
-          controller: _scrollController,
-          physics: NeverScrollableScrollPhysics(),
-          children: aa,
         ),
-      );
+      ));
+    });
+    widgets.add(
+      ListView(
+        reverse: widget.reverse,
+        scrollDirection: widget.scrollDirection,
+        controller: _scrollController,
+        physics: NeverScrollableScrollPhysics(),
+        children: aa,
+      ),
+    );
 
     if (widget.leftWidget != null) {
       widgets.add(Positioned(
@@ -106,7 +105,9 @@ class _NoticeBarState extends State<NoticeBar>
         bottom: 0,
         width: _image_width,
         child: Container(
-          color: widget.backgroundColor,
+          color: Color.fromRGBO(
+              widget.backgroundColor.red, widget.backgroundColor.green,
+              widget.backgroundColor.blue, 1),
           child: widget.leftWidget,
         ),
       ));
@@ -118,7 +119,9 @@ class _NoticeBarState extends State<NoticeBar>
         bottom: 0,
         width: _image_width,
         child: Container(
-          color: widget.backgroundColor,
+          color: Color.fromRGBO(
+              widget.backgroundColor.red, widget.backgroundColor.green,
+              widget.backgroundColor.blue, 1),
           child: widget.rightWidget,
         ),
       ));
@@ -129,7 +132,7 @@ class _NoticeBarState extends State<NoticeBar>
     });
   }
 
-  void createScroll(){
+  void createScroll() {
     _scrollController = ScrollController(
       initialScrollOffset: _offset,
     );
