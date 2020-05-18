@@ -95,8 +95,10 @@ class _ImagePreviewState extends State<ImagePreview> {
     // TODO: implement initState
     super.initState();
     _lastIndex = widget.selectIndex;
-    for (var i = 0; i<widget.itemCount; i++){
-      _imageProviders.add(ExtendedImage(image: AssetImage(''),));
+    for (var i = 0; i < widget.itemCount; i++) {
+      _imageProviders.add(ExtendedImage(
+        image: AssetImage(''),
+      ));
     }
     if (widget.modelCallback != null) {
       _model = widget.modelCallback(0);
@@ -152,25 +154,28 @@ class _ImagePreviewState extends State<ImagePreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   IconButton(
-                    icon: Image.asset('images/icon_photo_download.png', package: 'image_preview'),
+                    icon: Image.asset('images/icon_photo_download.png',
+                        package: 'image_preview'),
                     color: Colors.white,
-                    onPressed: (){
+                    onPressed: () {
                       if (widget.actionCallback != null) {
                         widget.actionCallback(0);
                       }
                     },
                   ),
                   IconButton(
-                    icon: Image.asset('images/icon_photo_view.png', package: 'image_preview'),
-                    onPressed: (){
+                    icon: Image.asset('images/icon_photo_view.png',
+                        package: 'image_preview'),
+                    onPressed: () {
                       if (widget.actionCallback != null) {
                         widget.actionCallback(1);
                       }
                     },
                   ),
                   IconButton(
-                    icon: Image.asset('images/icon_photo_operation.png', package: 'image_preview'),
-                    onPressed: (){
+                    icon: Image.asset('images/icon_photo_operation.png',
+                        package: 'image_preview'),
+                    onPressed: () {
                       if (widget.actionCallback != null) {
                         widget.actionCallback(2);
                       }
@@ -311,7 +316,7 @@ class _ImagePreviewState extends State<ImagePreview> {
                 },
               );
               if (_imageProviders.contains(aa) == false) {
-                _imageProviders.replaceRange(index, index+1, [aa]);
+                _imageProviders.replaceRange(index, index + 1, [aa]);
               }
               return Container(
                 color: Colors.black,
@@ -319,6 +324,17 @@ class _ImagePreviewState extends State<ImagePreview> {
               );
             }),
         bottomBar(),
+        Padding(
+          padding: EdgeInsets.only(left: 10, top: 20),
+          child: IconButton(
+            icon: Image.asset('images/icon_back.png', color: Colors.white,),
+            onPressed: () {
+              if (Navigator.canPop(context)){
+                Navigator.pop(context);
+              }
+            },
+          ),
+        ),
       ],
     );
   }

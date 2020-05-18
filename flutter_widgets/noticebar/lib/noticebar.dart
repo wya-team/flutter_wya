@@ -34,10 +34,10 @@ class NoticeBar extends StatefulWidget {
 
 class _NoticeBarState extends State<NoticeBar>
     with SingleTickerProviderStateMixin {
-  ScrollController _scrollController;
+
   Timer _timer;
   double _offset = 0.0;
-
+  ScrollController _scrollController;
   final _image_width = 30.0;
 
   List<Widget> _views = [];
@@ -46,17 +46,26 @@ class _NoticeBarState extends State<NoticeBar>
   void initState() {
     // TODO: implement initState
     super.initState();
-    addAnimation();
+    createScroll();
     reloadSubviews();
+    addAnimation();
   }
 
   @override
   void didUpdateWidget(NoticeBar oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    addAnimation();
-    reloadSubviews();
+
   }
+
+  @override
+  void reassemble() {
+    // TODO: implement reassemble
+    super.reassemble();
+    reloadSubviews();
+    addAnimation();
+  }
+
 
   void reloadSubviews() {
     List<Widget> widgets = [];
@@ -120,7 +129,7 @@ class _NoticeBarState extends State<NoticeBar>
     });
   }
 
-  void addAnimation() {
+  void createScroll(){
     _scrollController = ScrollController(
       initialScrollOffset: _offset,
     );
@@ -139,15 +148,23 @@ class _NoticeBarState extends State<NoticeBar>
         }
       }
     });
+  }
+
+  void addAnimation() {
     if (widget.scrollDirection == Axis.horizontal) {
       if (widget.textList.length == 1 && widget.textList.first.length < 20)
         return;
+
       _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
-        double newOffset = _scrollController.offset + 10;
-        if (newOffset != _offset) {
-          _offset = newOffset;
-          _scrollController.animateTo(_offset,
-              duration: Duration(milliseconds: 100), curve: Curves.linear);
+//        print('posins==${_scrollController.positions.toString()}');
+//        print('asdsddd==${_scrollController.hasClients}');
+        if (_scrollController.hasClients == true) {
+          double newOffset = _scrollController.offset + 10;
+          if (newOffset != _offset) {
+            _offset = newOffset;
+            _scrollController.animateTo(_offset,
+                duration: Duration(milliseconds: 100), curve: Curves.linear);
+          }
         }
       });
     } else {
