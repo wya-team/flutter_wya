@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class NoticeBar extends StatefulWidget {
   NoticeBar({
+    Key key,
     this.scrollDirection = Axis.horizontal,
     this.reverse = false,
     this.leftWidget,
     this.rightWidget,
     @required this.textList,
     this.backgroundColor = Colors.white,
-  }) : super();
+    this.autoAnimation = true,
+  }) : super(key: key);
 
   Axis scrollDirection;
 
@@ -28,16 +30,17 @@ class NoticeBar extends StatefulWidget {
 
   Color backgroundColor;
 
+  bool autoAnimation;
+
   @override
-  _NoticeBarState createState() => _NoticeBarState();
+  NoticeBarState createState() => NoticeBarState();
 }
 
-class _NoticeBarState extends State<NoticeBar>
+class NoticeBarState extends State<NoticeBar>
     with SingleTickerProviderStateMixin {
-
   Timer _timer;
   double _offset = 0.0;
-  ScrollController _scrollController;
+  final _scrollController = ScrollController();
   final _image_width = 30.0;
 
   List<Widget> _views = [];
@@ -46,29 +49,24 @@ class _NoticeBarState extends State<NoticeBar>
   void initState() {
     // TODO: implement initState
     super.initState();
-    createScroll();
-    reloadSubviews();
-    addAnimation();
-  }
-
-  @override
-  void didUpdateWidget(NoticeBar oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
+    _createScroll();
+    _reloadSubviews();
+    if (widget.autoAnimation == true) {
+      startAnimation();
+    }
   }
 
   @override
   void reassemble() {
     // TODO: implement reassemble
     super.reassemble();
-    reloadSubviews();
-    addAnimation();
+    if (widget.autoAnimation == true) {
+      startAnimation();
+    }
   }
 
-
-  void reloadSubviews() {
+  void _reloadSubviews() {
     List<Widget> widgets = [];
-
     List<Widget> aa = [];
     widget.textList.forEach((element) {
       aa.add(Container(
@@ -105,9 +103,8 @@ class _NoticeBarState extends State<NoticeBar>
         bottom: 0,
         width: _image_width,
         child: Container(
-          color: Color.fromRGBO(
-              widget.backgroundColor.red, widget.backgroundColor.green,
-              widget.backgroundColor.blue, 1),
+          color: Color.fromRGBO(widget.backgroundColor.red,
+              widget.backgroundColor.green, widget.backgroundColor.blue, 1),
           child: widget.leftWidget,
         ),
       ));
@@ -119,9 +116,8 @@ class _NoticeBarState extends State<NoticeBar>
         bottom: 0,
         width: _image_width,
         child: Container(
-          color: Color.fromRGBO(
-              widget.backgroundColor.red, widget.backgroundColor.green,
-              widget.backgroundColor.blue, 1),
+          color: Color.fromRGBO(widget.backgroundColor.red,
+              widget.backgroundColor.green, widget.backgroundColor.blue, 1),
           child: widget.rightWidget,
         ),
       ));
@@ -132,10 +128,7 @@ class _NoticeBarState extends State<NoticeBar>
     });
   }
 
-  void createScroll() {
-    _scrollController = ScrollController(
-      initialScrollOffset: _offset,
-    );
+  void _createScroll() {
     _scrollController.addListener(() {
 //        print('_scrollController.position.maxScrollExtent==${_scrollController.position.maxScrollExtent}');
 //        print('_scrollController.offset==${_scrollController.offset}');
@@ -153,25 +146,26 @@ class _NoticeBarState extends State<NoticeBar>
     });
   }
 
-  void addAnimation() {
+  void startAnimation() {
     if (widget.scrollDirection == Axis.horizontal) {
       if (widget.textList.length == 1 && widget.textList.first.length < 20)
         return;
-
+      if (_timer != null) return;
       _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
-//        print('posins==${_scrollController.positions.toString()}');
-//        print('asdsddd==${_scrollController.hasClients}');
         if (_scrollController.hasClients == true) {
-          double newOffset = _scrollController.offset + 10;
-          if (newOffset != _offset) {
-            _offset = newOffset;
-            _scrollController.animateTo(_offset,
-                duration: Duration(milliseconds: 100), curve: Curves.linear);
-          }
+          setState(() {
+            double newOffset = _scrollController.offset + 10;
+            if (newOffset != _offset) {
+              _offset = newOffset;
+              _scrollController.animateTo(_offset,
+                  duration: Duration(milliseconds: 100), curve: Curves.linear);
+            }
+          });
         }
       });
     } else {
       if (widget.textList.length < 2) return;
+      if (_timer != null) return;
       _timer = Timer.periodic(Duration(seconds: 2), (timer) {
         double newOffset = _scrollController.offset + 44;
         if (newOffset != _offset) {
@@ -183,12 +177,16 @@ class _NoticeBarState extends State<NoticeBar>
     }
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
+  void stopAnimation() {
     if (_timer != null) {
       _timer.cancel();
     }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    stopAnimation();
     if (_scrollController != null) {
       _scrollController.dispose();
     }
@@ -197,6 +195,9 @@ class _NoticeBarState extends State<NoticeBar>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.autoAnimation == true) {
+      startAnimation();
+    }
     return Container(
       height: 44,
       color: widget.backgroundColor,
