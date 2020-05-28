@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -45,21 +47,36 @@ class _SuffixFlexTextState extends State<SuffixFlexText> {
       tp.layout(maxWidth: size.maxWidth);
 //      print('tp.didExceedMaxLines==${tp.didExceedMaxLines}');
       if (tp.didExceedMaxLines) {
-        var startIndex = 0;
-        for (int count = 0; count < widget.maxLines; count++) {
-          TextRange range =
-          tp.getLineBoundary(TextPosition(offset: startIndex));
-//          print(range.start.toString() + ":" + range.end.toString());
-          startIndex = range.end + 1;
-        }
-//        print('end==${startIndex}');
         var otherCount = 0;
         for (int a = 0; a < widget.textList.length - 1; a++) {
           String text = widget.textList[a];
           otherCount += text.length;
         }
-        String result =
-        widget.textList.last.substring(0, startIndex - otherCount - 4);
+        bool isHaveNewLine = false;
+        var startIndex = 0;
+        for (int count = 0; count < widget.maxLines; count++) {
+          TextRange range =
+          tp.getLineBoundary(TextPosition(offset: startIndex));
+          if (count == widget.maxLines - 1) {
+            startIndex = range.end;
+            if (range.isCollapsed == true) {
+              // 存在换行符
+              isHaveNewLine = true;
+            }
+          } else {
+            startIndex = range.end + 1;
+          }
+        }
+//        print('end==${startIndex}');
+        String result = '';
+        if (isHaveNewLine == true) {
+          result =
+              widget.textList.last.substring(0, startIndex - otherCount);
+        } else {
+          result =
+              widget.textList.last.substring(0, startIndex - otherCount - 4);
+        }
+
 //        print("string==" + result);
         if (widget.textSpan.children != null && widget.textSpan.children.length > 0) {
           List<InlineSpan> spanList = [];
