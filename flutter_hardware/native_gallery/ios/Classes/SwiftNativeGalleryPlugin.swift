@@ -1,6 +1,6 @@
 import Flutter
 import UIKit
-import WYAKit
+import LSJHPhotoBrowser
 
 public class SwiftNativeGalleryPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {

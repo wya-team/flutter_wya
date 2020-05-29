@@ -6,7 +6,7 @@
 
 typedef void (^SaveMediaBlock)(BOOL isSuccess, NSString * result, NSString * imagePath, NSString * videoPath);
 
-@interface WYACameraTool : NSObject
+@interface AssetCacheTool : NSObject
 /// 是否保存至自定义相册，默认为bundle_name
 @property (nonatomic, assign) BOOL saveAblum;
 /// 自定义相册名

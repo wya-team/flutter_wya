@@ -38,7 +38,7 @@ public class SwiftCachePlugin: NSObject, FlutterPlugin {
                 }
 
             } else {
-                let tool = WYACameraTool()
+                let tool = AssetCacheTool()
                 if !(map["saveProjectNameAlbum"] is NSNull) {
                     tool.saveAblum = map["saveProjectNameAlbum"] as! Bool
                 }
@@ -57,7 +57,7 @@ public class SwiftCachePlugin: NSObject, FlutterPlugin {
     } else if call.method == "saveVideo" {
         var map = call.arguments as! [String : Any]
         if !(map["path"] is NSNull) {
-            let tool = WYACameraTool()
+            let tool = AssetCacheTool()
             if !(map["saveProjectNameAlbum"] is NSNull) {
                 tool.saveAblum = map["saveProjectNameAlbum"] as! Bool
             }

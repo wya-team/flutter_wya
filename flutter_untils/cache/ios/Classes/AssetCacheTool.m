@@ -1,8 +1,8 @@
-#import "WYACameraTool.h"
+#import "AssetCacheTool.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 
-@implementation WYACameraTool
+@implementation AssetCacheTool
 #pragma mark - LifeCircle
 - (instancetype)init
 {
