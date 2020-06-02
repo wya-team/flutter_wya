@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import LSJHCamera
 
 public class SwiftNativeCameraPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -17,11 +18,11 @@ public class SwiftNativeCameraPlugin: NSObject, FlutterPlugin {
         cameraVC?.time      = CGFloat((map["time"] as! NSNumber).floatValue)
         let praset = (map["videoPreset"] as! NSNumber).intValue
         if praset == 0 {
-            cameraVC?.preset = AVCaptureSession.Preset.low
+            cameraVC?.preset = NSString(utf8String: AVCaptureSession.Preset.low.rawValue)
         } else if praset == 1 {
-            cameraVC?.preset = AVCaptureSession.Preset.medium
+            cameraVC?.preset = NSString(utf8String: AVCaptureSession.Preset.medium.rawValue)
         } else {
-            cameraVC?.preset = AVCaptureSession.Preset.high
+            cameraVC?.preset = NSString(utf8String: AVCaptureSession.Preset.high.rawValue)
         }
         let save = map["saveAblum"] as! Bool
         if save {

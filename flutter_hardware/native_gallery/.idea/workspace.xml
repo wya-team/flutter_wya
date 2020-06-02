@@ -7,11 +7,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d59a5d4d-6042-4b2e-9b14-5d38e0104d7f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../native_camera/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../native_camera/.idea/markdown-navigator-enh.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../native_camera/.idea/markdown-navigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/example/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/example/ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/SwiftNativeCameraPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/ios/Classes/SwiftNativeCameraPlugin.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYACameraPreviewImageView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYACameraPreviewImageView.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYACameraTool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYACameraTool.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYACameraViewController.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYACameraViewController.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/Model/WYAImageCrop.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/Model/WYAImageCropViewControllerTransitioning.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/Model/WYAImageCropViewControllerTransitioning.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropPhotoFramesView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropPhotoFramesView.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropScrollView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropScrollView.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropToolBar.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropToolBar.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/View/WYAImageCropView.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/WYAImageCropViewController.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAImageCrop/WYAImageCropViewController.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAProgressView/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAProgressView/WYAProgressView.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/Classes/WYAProgressView/WYAProgressView.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../native_camera/ios/native_camera.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/../native_camera/ios/native_camera.podspec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Classes/SwiftNativeGalleryPlugin.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/SwiftNativeGalleryPlugin.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/native_gallery.podspec" beforeDir="false" afterPath="$PROJECT_DIR$/ios/native_gallery.podspec" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,6 +88,16 @@
       <updated>1585044983574</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

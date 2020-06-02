@@ -10,9 +10,9 @@ public class SwiftNativeGalleryPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    if call.method == "openAlbum" {
+    if call.method == "native_gallery" {
         let map = call.arguments as! [String:Any]
-        let photo = WYAPhotoBrowser()
+        let photo = LLPhotoBrowser()
         photo.config.maxSelectCount = (map["maxSelectCount"] as! NSNumber).intValue
         photo.config.sortAscending       = map["sortAscending"] as! Bool
         photo.config.allowSelectImage      = map["allowSelectImage"] as! Bool
@@ -24,7 +24,7 @@ public class SwiftNativeGalleryPlugin: NSObject, FlutterPlugin {
         photo.config.allowChoosePhotoAndVideo = map["allowChoosePhotoAndVideo"] as! Bool
         photo.config.maxVideoDuration = (map["maxVideoDuration"] as! NSNumber).intValue
         photo.config.maxEditVideoTime = (map["maxEditVideoTime"] as! NSNumber).intValue
-        photo.config.exportVideoType = WYAExportVideoType(rawValue: WYAExportVideoType.RawValue((map["exportVideoType"] as! NSNumber).intValue))!
+        photo.config.exportVideoType = LLExportVideoType(rawValue: LLExportVideoType.RawValue((map["exportVideoType"] as! NSNumber).intValue))!
         photo.callBackBlock = {(medias, assets) in
             let dic = NSMutableDictionary()
             if medias.count > 0 {
@@ -37,7 +37,7 @@ public class SwiftNativeGalleryPlugin: NSObject, FlutterPlugin {
                 dic["images"] = list
             }
             if assets.count > 0 {
-                self.exportVideo(assets: assets as! [PHAsset], type: WYAExportVideoType(rawValue: WYAExportVideoType.RawValue((map["exportVideoType"] as! NSNumber).intValue))!) { (arr) in
+                self.exportVideo(assets: assets as! [PHAsset], type: LLExportVideoType(rawValue: LLExportVideoType.RawValue((map["exportVideoType"] as! NSNumber).intValue))!) { (arr) in
                     dic["videos"] = arr
                 }
             }
@@ -49,8 +49,8 @@ public class SwiftNativeGalleryPlugin: NSObject, FlutterPlugin {
     }
   }
 
-    func exportVideo(assets:[PHAsset], type:WYAExportVideoType, handle:@escaping (NSMutableArray) -> Void){
-        let manager = WYAPhotoBrowserManager.shared()
+    func exportVideo(assets:[PHAsset], type:LLExportVideoType, handle:@escaping (NSMutableArray) -> Void){
+        let manager = LLPhotoBrowserManager.shared()
         let array = NSMutableArray()
 
         var allCount = 0
