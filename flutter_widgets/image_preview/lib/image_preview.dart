@@ -1,6 +1,7 @@
 library image_preview;
 
 import 'dart:ui';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ enum PageControlStyle {
 }
 
 class ImagePreviewModel {
+  String imageUrl;
+
   /// 原图url，如果为null时，则不显示原图按钮
   String originalImageUrl;
 
@@ -32,7 +35,7 @@ class ImagePreviewModel {
   /// 内部使用
   bool isShowOriginalImage = true;
 
-  ImagePreviewModel({this.originalImageUrl, this.imageSize});
+  ImagePreviewModel({this.imageUrl, this.originalImageUrl, this.imageSize});
 }
 
 class ImagePreview extends StatefulWidget {
@@ -294,42 +297,63 @@ class _ImagePreviewState extends State<ImagePreview> {
 
     return Stack(
       children: <Widget>[
-        ExtendedImageGesturePageView.builder(
-            controller: _pageController,
-            itemCount: widget.itemCount,
-            itemBuilder: (BuildContext context, int index) {
-              Widget aa = ExtendedImage(
-                image: widget.provider(context, index),
-                mode: ExtendedImageMode.gesture,
-                initGestureConfigHandler: (state) {
-                  return GestureConfig(
-                    minScale: widget.minZoomNumber,
-                    animationMinScale: 0.7,
-                    maxScale: widget.maxZoomNumber,
-                    animationMaxScale: 3.5,
-                    speed: 1.0,
-                    inertialSpeed: 100.0,
-                    initialScale: 1.0,
-                    inPageView: true,
-                    initialAlignment: InitialAlignment.center,
-                  );
-                },
-              );
-              if (_imageProviders.contains(aa) == false) {
-                _imageProviders.replaceRange(index, index + 1, [aa]);
-              }
-              return Container(
-                color: Colors.black,
-                child: _imageProviders[index],
-              );
-            }),
+        ExtendedImageSlidePage(
+          slideAxis: SlideAxis.both,
+          slideType: SlideType.onlyImage,
+//          slidePageBackgroundHandler: (offset, size) {
+//            print(offset);
+//            print(size);
+//            return Color.fromRGBO(0, 0, 0, 0);
+//          },
+          child: ExtendedImageGesturePageView.builder(
+              canMovePage: (d) {
+                print(d);
+                return true;
+              },
+              controller: _pageController,
+              itemCount: widget.itemCount,
+              itemBuilder: (BuildContext context, int index) {
+                Widget aa = Hero(
+                  tag: widget.modelCallback(index).imageUrl,
+                  child: ExtendedImage(
+                    image: widget.provider(context, index),
+                    mode: ExtendedImageMode.gesture,
+                    enableSlideOutPage: true,
+                    initGestureConfigHandler: (state) {
+                      return GestureConfig(
+                        minScale: widget.minZoomNumber,
+                        animationMinScale: 0.7,
+                        maxScale: widget.maxZoomNumber,
+                        animationMaxScale: 3.5,
+                        speed: 1.0,
+                        inertialSpeed: 100.0,
+                        initialScale: 1.0,
+                        inPageView: true,
+                        initialAlignment: InitialAlignment.center,
+                      );
+                    },
+                  ),
+                );
+                if (_imageProviders.contains(aa) == false) {
+                  _imageProviders.replaceRange(index, index + 1, [aa]);
+                }
+                return Container(
+                  color: Color.fromRGBO(0, 0, 0, 0.75),
+                  child: _imageProviders[index],
+                );
+              }),
+        ),
         bottomBar(),
         Padding(
           padding: EdgeInsets.only(left: 10, top: 20),
           child: IconButton(
-            icon: Image.asset('images/icon_back.png', color: Colors.white,),
+            icon: Image.asset(
+              'images/icon_back.png',
+              color: Colors.white,
+              package: 'image_preview',
+            ),
             onPressed: () {
-              if (Navigator.canPop(context)){
+              if (Navigator.canPop(context)) {
                 Navigator.pop(context);
               }
             },

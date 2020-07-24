@@ -18,19 +18,30 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<Widget> _childs = [];
+
   @override
   void initState() {
     super.initState();
   }
 
   void openAlbum() async {
-    Map<dynamic, dynamic> map = await NativeGallery.openAlbum(maxSelectCount: 5, allowSelectOriginal: false, canTakePicture: false, allowEditImage: true,allowSelectVideo: false, allowChoosePhotoAndVideo: false);
+    Map<dynamic, dynamic> map = await NativeGallery.openAlbum(
+        maxSelectCount: 5,
+        allowSelectOriginal: false,
+        canTakePicture: false,
+        allowEditImage: true,
+        allowSelectVideo: false,
+        allowChoosePhotoAndVideo: false);
     print(map);
     List<Widget> wids = [];
     List list = map["images"];
     list.forEach((element) async {
       Uint8List list = await base642Image(element);
-      wids.add(SizedBox(width: 100, height: 100, child: Image.memory(list),));
+      wids.add(SizedBox(
+        width: 100,
+        height: 100,
+        child: Image.memory(list),
+      ));
     });
     setState(() {
       _childs = wids;

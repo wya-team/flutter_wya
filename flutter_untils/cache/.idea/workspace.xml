@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c02ecded-f51c-464b-8a62-91950d162f79" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/example/ios/Flutter/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/example/ios/Flutter/.last_build_id" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/native_gallery.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/native_gallery.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../flutter_hardware/native_gallery/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
